@@ -1,0 +1,17 @@
+name: "SKY"
+output_dir: "."
+navbar:
+  title: "The Social Science Knowledge Accumulation Initiative"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Meta-analysis"
+      href: meta.html
+    - text: "Causal Inference"
+      href: inference.html
+    - text: "Methodological Guidelines"
+      href: guidelines.html
+      
+output:
+  html_document:
+    theme: flatly
