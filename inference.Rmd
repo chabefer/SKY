@@ -3,3 +3,46 @@ title: "Causal Inference"
 ---
 
 
+Tools of causal inference are the basic statistical building behind most scientific results.
+It is thus extremely useful to have an open source collectively aggreed upon resource presenting and assessing them, as well as listing the current unresolved issues.
+The content of the website covers the basic theoretical knowledge and technical skills required for implementing microeconometric methods of causal inference.
+This means:
+
+* Understanding of the basic language to encode causality,
+* knowledge of the fundamental problems of inference and the biases of intuitive estimators,
+* understanding of how econometric methods recover treatment effects,
+* ability to compute these estimators along with an estimate of their precision using the statistical software R combined with latex using knitr.
+
+All the notions and estimators are introduced using a numerical example and simulations. 
+
+1. The Two Fundamental Problems of Inference
++ Rubin Causal Model: the basic language to encode causality.
++ Treatment Effects: our causal parameters of interest.
++ The Fundamental Problem of Causal Inference: the Treatment Effects of interest can NEVER be observed, even with a sample of infinite size (a very acute problem indeed!). 
+What we can do instead is to use transformations of the observed data that, under certain assumptions, are equal to the Treatment Effect of interest when the sample size is infinite. 
++ The Biases of Intuitive Comparisons: the intuitive comparisons that we use for causal inference (the before/after and with/without comparisons) are generally biased because of factors that determine both the outcomes of the program and who receives it. 
+These factors are called confounding factors.
++ The Fundamental Problem of Statistical Inference: in practice, sample sizes are finite. 
+As a consequence, in each sample, our estimator differs from the Treatment Effect of interest. 
+This phenomenon is called sampling noise. 
+We will cover two useful statistical tools to help with this problem: gauging the size of the sampling noise ex-post; choosing sample size ex-ante to decrease sampling noise.
++ The perils of significance testing: specification search and publication bias. 
+I suggest to NEVER use statistical tests and I explain why. 
+I suggest to gauge sampling noise instead.
+2. Methods of Causal Inference: In this section, we learn the three sets of methods that are used by economists in order to suppress the influence of confounding factors and estimate Treatment Effects. 
+For each estimator, we will cover identification (how it solves the fundamental problem of causal inference absent sampling noise), estimation (how to compute an estimator with a sample) and precision (how to gauge the sensitivity of our estimate to sampling noise with independently and identically distributed (i.i.d.) observations).
++ Randomized Controlled Trials (RCTs): solve for the problem of the confounding factors by allocating the treatment at random, i.e. independently of the confounders. 
+We cover the four most used RCT designs: randomization by brute force, after self-selection, after eligibility and encouragement designs.
++ Natural Experiments: leverage on features of the implementation of the program that approximate the conditions of a RCT. We are going to cover the three most used natural experiment methods: Instrumental Variables (IV), Difference-In-Differences (DID) and Regression Discontinuity Designs (RDD).
++ Observational methods: try to measure the confounders and to account separately for their effects on the outcomes. 
+Standard observational methods that we are going to study are OLS and Matching. 
+I am also going to dedicate some time to more recent Observational Methods based on Machine Learning (ML). 
+3. Additional important topics
++ Power analysis: before implementing a given method, we want either to choose the sample size required to reach a pre-specified level of precision or to gauge the level of precision we might reach with a pre-specified sample size. 
++ Placebo tests: tests that we implement in order to check the validity of natural experiments and of observational methods. 
++ How to estimate precision when observations are not i.i.d.
++ LaLonde tests: check whether observational methods and natural experiments can reproduce the results of RCTs. 
++ Analysis of diffusion effects.
++ Analysis of distributive effects.
++ Meta-analysis.
+

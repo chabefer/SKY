@@ -25,3 +25,4 @@ SKY ambitions to fight the evils of the current scientific system:
 
 In our vision, SKY is destined to replace all journals and to be a place where all collaborative research projects start and are conducted.
 
+For the moment, you can find a series of [meta-analysis](meta.html) and an introduction to [the econometrics of causal inference](inference.html).
