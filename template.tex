@@ -1,0 +1,35 @@
+% math package (for align environment)
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% new environments to define objects
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{exercise}{Exercise}
+\newenvironment{numexample}{\noindent\textsc{Numerical Example}:\it}{\rm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{\textsc{Proof}:}{\rule{1ex}{1ex}}
+\newtheorem{assumption}{Assumption}
+
+% remarks
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\fixmeJ}[2][]{\todo[inline, color=green!20, #1]{#2}}
+\newcommand{\fixmeS}[2][]{\todo[inline, color=yellow!40, #1]{#2}}
+
+% package to generate commands with double letters in maths
+\usepackage{dsfont}
+\usepackage{bbm}
+\newcommand{\esp}[1]{\mathbb{E}[ #1 ]}
+\newcommand{\var}[1]{\mathbb{V}[ #1 ]}
+\newcommand{\cov}[1]{\mathbb{C}[ #1 ]}
+\newcommand{\un}[1]{\mathds{1}[ #1 \geq0]}
+\newcommand{\unn}[1]{\mathds{1}[ #1 <0]}
+\newcommand{\uns}[1]{\mathbb{1}[ #1 ]}
+\newcommand\Ind{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}\copy0\kern-\wd0\mkern4mu\box0}} 
+\newcommand{\plim}[1]{\text{plim}_{ #1 \rightarrow \infty}}
+\newcommand{\plims}{\text{plim}}
+\newcommand{\partder}[2]{\frac{\partial #1}{\partial #2}}
+\DeclareMathOperator{\diag}{diag}

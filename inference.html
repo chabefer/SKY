@@ -215,15 +215,15 @@ $(document).ready(function () {
 </ul>
 <p>All the notions and estimators are introduced using a numerical example and simulations.</p>
 <ol style="list-style-type: decimal">
-<li>The Two Fundamental Problems of Inference</li>
+<li><a href="FPI.html">The Two Fundamental Problems of Inference</a></li>
 </ol>
 <ul>
-<li>Rubin Causal Model: the basic language to encode causality.</li>
-<li>Treatment Effects: our causal parameters of interest.</li>
-<li>The Fundamental Problem of Causal Inference: the Treatment Effects of interest can NEVER be observed, even with a sample of infinite size (a very acute problem indeed!). What we can do instead is to use transformations of the observed data that, under certain assumptions, are equal to the Treatment Effect of interest when the sample size is infinite.</li>
-<li>The Biases of Intuitive Comparisons: the intuitive comparisons that we use for causal inference (the before/after and with/without comparisons) are generally biased because of factors that determine both the outcomes of the program and who receives it. These factors are called confounding factors.</li>
-<li>The Fundamental Problem of Statistical Inference: in practice, sample sizes are finite. As a consequence, in each sample, our estimator differs from the Treatment Effect of interest. This phenomenon is called sampling noise. We will cover two useful statistical tools to help with this problem: gauging the size of the sampling noise ex-post; choosing sample size ex-ante to decrease sampling noise.</li>
-<li>The perils of significance testing: specification search and publication bias. I suggest to NEVER use statistical tests and I explain why. I suggest to gauge sampling noise instead.</li>
+<li><a href="RCM.html">Rubin Causal Model:</a> the basic language to encode causality.</li>
+<li><a href="TE.html">Treatment Effects:</a> our causal parameters of interest.</li>
+<li><a href="FPCI.html">The Fundamental Problem of Causal Inference:</a> the Treatment Effects of interest can NEVER be observed, even with a sample of infinite size (a very acute problem indeed!). What we can do instead is to use transformations of the observed data that, under certain assumptions, are equal to the Treatment Effect of interest when the sample size is infinite.</li>
+<li><a href="intuit.html">The Biases of Intuitive Comparisons:</a> the intuitive comparisons that we use for causal inference (the before/after and with/without comparisons) are generally biased because of factors that determine both the outcomes of the program and who receives it. These factors are called confounding factors.</li>
+<li><a href="FPSI.html">The Fundamental Problem of Statistical Inference:</a> in practice, sample sizes are finite. As a consequence, in each sample, our estimator differs from the Treatment Effect of interest. This phenomenon is called sampling noise. We will cover two useful statistical tools to help with this problem: gauging the size of the sampling noise ex-post; choosing sample size ex-ante to decrease sampling noise.</li>
+<li><a href="perils.html">The perils of significance testing:</a> specification search and publication bias. I suggest to NEVER use statistical tests and I explain why. I suggest to gauge sampling noise instead.</li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Methods of Causal Inference: In this section, we learn the three sets of methods that are used by economists in order to suppress the influence of confounding factors and estimate Treatment Effects. For each estimator, we will cover identification (how it solves the fundamental problem of causal inference absent sampling noise), estimation (how to compute an estimator with a sample) and precision (how to gauge the sensitivity of our estimate to sampling noise with independently and identically distributed (i.i.d.) observations).</li>
