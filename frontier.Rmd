@@ -1,0 +1,19 @@
+---
+title: "Methological Research: Frontier Questions"
+---
+
+All research methods used in the social sciences are not fully formed.
+There is an active frontier of research on methods. 
+This section of SKY ambitions to report on the most important unsolved methodological questions and on the progress of the communities of researchers tackling them.
+This section is organized along the lines of the various methods social scientists use to conduct causal inference:
+
+* Randomized Controlled Trials
+* Natural Experiments
+  + Difference In Differences
+  + Regression Discontiuity Designs
+  + Instrumental Variables
+  + Kink Designs and Notches
+* Observational Methods
+* Lab Experiments
+* Structural Models
+* Qualitative Methods

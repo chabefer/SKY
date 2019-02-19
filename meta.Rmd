@@ -1,14 +1,12 @@
 ---
-title: "Meta-Analysis"
+title: "Answers to Questions"
 ---
 
-Meta-Analysis are the natural way to aggregate scientific knowledge. 
+SKY's goal is to provide the most up-to-date, aggregated, rigorous, simple and easy-to-use account of the existing evidence available on a topic.
+SKY hosts for the moment the answers to several questions relative to environmental policies:
 
-SKY hosts for the moment several meta-analysis on environmental themes:
-
-* [What are the Impacts of Payments for Ecosystem Services on Forest Cover?](PES.html)
-* [What are the Impacts of Nudges on Environmental Behaviors?](nudges.html)
-* [What are the Biases of Observational Methods?](BiasOM.html)
+* [What are the Most Cost-Effective Ways to Fight Climate Change?](CC.html)
+* [What are the Most Cost-Effective Ways to Change Environmental Behaviors?](nudges.html)
 
 
 

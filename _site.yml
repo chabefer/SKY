@@ -5,12 +5,13 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Meta-analysis"
+    - text: "Answers to Questions"
       href: meta.html
-    - text: "Causal Inference"
-      href: inference.html
     - text: "Methodological Guidelines"
-      href: guidelines.html
+      href: methods.html
+    - text: "About"
+      href: about.html
+      
       
 output:
   html_document:

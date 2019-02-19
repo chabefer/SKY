@@ -1,0 +1,23 @@
+---
+title: "What are the Most Cost-Effective Ways to Fight Climate Change?"
+---
+
+Climate change is one of the most pressing issues facing mankind.
+In order to fight climate change, we have to find the most cost-effective ways to curb the emission of GreenHouse Gases (GHGs).
+A lot of different actions can be taken to combat climate change.
+Among them are interventions on: 
+
+* Buildings (weatherization)
+* Transportation (taxes, norms)
+* Land use ([forest](ForestPES.html) and [grassland subsidies](GrasslandPES.html))
+* Power generation (taxes and markets for polluting rights)
+
+Allocating the amount of public and private money to the most effective uses requires an estimate of the cost-effectiveness of the various options: how much do they cost per ton of C02 saved from the atmosphere?
+This monetary estimate is called the abatement cost of the option.
+
+This page of SKY is dedicated to gathering the cost-effectiveness estimates from the literature and to comparing them.
+Eeach separate estimate stems from a separate meta-analysis and proivides the link to the meta-analytical results and methodology, which itself links to the individual studies.
+
+Eventually, estimates of the abatement cost of each option has to be compared with the estimated social cost of carbon.
+
+

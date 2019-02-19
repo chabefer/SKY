@@ -1,5 +1,18 @@
 ---
-title: "Methodological Guidelines"
+title: "Methological Guidelines"
 ---
 
+When conducting research, especially with the purpose of reporting the resulst to SKY, it is necessary to follow a set of methodological guidelines.
+The set of methodological guidelines is organized so as to correspond to the set of methods social scientists routinely use:
+
+* Randomized Controlled Trials
+* Natural Experiments
+  + Difference In Differences
+  + Regression Discontiuity Designs
+  + Instrumental Variables
+  + Kink Designs and Notches
+* Observational Methods
+* Lab Experiments
+* Structural Models
+* Qualitative Methods
 
