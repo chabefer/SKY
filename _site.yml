@@ -7,7 +7,7 @@ navbar:
       href: index.html
     - text: "Answers to Questions"
       href: meta.html
-    - text: "Methodological Guidelines"
+    - text: "Methods"
       href: methods.html
     - text: "About"
       href: about.html

@@ -1,0 +1,17 @@
+---
+title: "Sending data to SQL server"
+---
+
+```{r libraries}
+library(RMySQL)
+SKY.db <- dbConnect(MySQL(),dbname='SKY',username='chabefer',password='mathima13',host='sylvaindata.cnphnexfo8mm.us-west-2.rds.amazonaws.com')
+#group='SKY_amazon_chabefer')
+```
+
+```{r sendingGCP}
+data.GCP <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1RKZZuAAnGMUKgoFTQskVSCoMsOxzpcPp-RCZbHgvsK8/edit?usp=sharing")
+colnames(data.GCP) <- c("paper.id","authors","year","cost","se.cost")
+data.GCP <- as.data.frame(data.GCP)
+dbWriteTable(SKY.db,'GCP',data.GCP,overwrite=TRUE)
+```
+

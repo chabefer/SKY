@@ -7,10 +7,10 @@ The set of methodological guidelines is organized so as to correspond to the set
 
 * Randomized Controlled Trials
 * Natural Experiments
-  + Difference In Differences
-  + Regression Discontiuity Designs
-  + Instrumental Variables
-  + Kink Designs and Notches
+    + Difference In Differences
+    + Regression Discontinuity Designs
+    + Instrumental Variables
+    + Kink Designs and Notches
 * Observational Methods
 * Lab Experiments
 * Structural Models
