@@ -11,7 +11,7 @@
 
 
 
-<title>Grassland Conservation and Climate Change</title>
+<title>Cost-Effectiveness of Grassland Conservation Programs</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -302,27 +302,89 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Grassland Conservation and Climate Change</h1>
+<h1 class="title toc-ignore">Cost-Effectiveness of Grassland Conservation Programs</h1>
 
 </div>
 
 
 <p>Under certain conditions, grassland can avoid the emission of GHGs. A case in point is when grassland is extensively managed and replaces cropland. In that case, <a href="https://hal.archives-ouvertes.fr/hal-01152980/document">it has been computed that</a> 10.55tC02 are stored per hectare of extensively managed grassland saved from conversion to cropland. As a result, Grassland Conservation Programs, that pay farmers for maintaining grassland cover, might be an effective way to combat climate change, if they succeed in triggering an increase in grassland cover for a reasonable amount of money.</p>
-<p>In this section we report on the results of several studies that have estimated the cost-effectiveness of the French implementation of the EU Grassland Conservation Program, one of the largest Grassland Conservation Programs in the world. The studies are:</p>
+<p>In this section we report on the results of several studies that have estimated the cost-effectiveness of the French implementation of the EU Grassland Conservation Program, one of the largest Grassland Conservation Programs in the world. Below is the estimated cost-effectiveness of this program:</p>
+<div class="figure" style="text-align: center">
+<img src="GrasslandPES_files/figure-html/CE.GCP-1.png" alt="Cost-Effectiveness of the French Grassland Conservation Program (in Euros/tonC02)" width="480" />
+<p class="caption">
+Cost-Effectiveness of the French Grassland Conservation Program (in Euros/tonC02)
+</p>
+</div>
+<p>The overall estimate is of 95 <span class="math inline">\(\pm\)</span> 27 Euros per ton of C02. This is still much higher than the social cost of C02 of 24 Euros per ton of C02 as estimated by the US EPA. It is close to the most recent estimates of the social cost of carbon stemming from the Quinet report.</p>
+<div id="caveats-and-open-questions" class="section level2">
+<h2>Caveats and open questions</h2>
+<p>The results presented above suffer from several limitations that might warrant further investigations and that might change the overall assessment of the cost-effectiveness of the program.</p>
+<div id="how-durable-are-the-effects-of-the-grassland-conservation-program" class="section level3">
+<h3>How durable are the effects of the Grassland Conservation Program?</h3>
+<p>How fast the additional grassland area triggered by the program would return to another use after the payments stop is key to the estimation of cost-effectiveness. The more permanent the changes, the more cost-effective the program.</p>
+<p>The estimates presented on this page assume that the effects of the program are permanent: the additional carbon stored in the ground thanks to the program is assumed to stay there forever, while the program only pays subsidies for five years. As a consequence, the cost-effectiveness estimates presented on this page are a lower bound on the cost-effectiveness of the program. An upper bound could be obtained by assuming that all the additional carbon stored in the ground returns to the atmosphere once the payments stop.</p>
+<p>In order to estimate the durability of the effects of the program, one needs to observe what happens once farmers stop receiving the subisidies. The study by Gallic and Marcus seems to be able to answer this question since it considers farmers that lose the benefit of the subsidy. An estimate of permanence could be produced from their study. It is still to be done.</p>
+</div>
+<div id="which-land-use-does-grassland-replace" class="section level3">
+<h3>Which land use does grassland replace?</h3>
+<p>Whether the additional grassland area triggered by the program replaces forest or crops, and which type of crop, is critical for the estimation of cost-effectiveness. If most of the grassland area replaces forest, or slowing growing bushes, the program likely increases GHG emissions. If most of the grassland area replaces crops, especially crops that use a lot of nitrogen fertilizer, the program decreases GHG emissions.</p>
+<p>The estimates presented on this page follow <a href="https://hal.archives-ouvertes.fr/hal-01152980/document">Baudrier, Bellassen and Foucherot</a> in assuming that the additional grassland triggered by the program replaces corn silage. Corn silage uses slightly more nitrogen, triggers a release of carbon stored in the grassland and is assumed to trigger the adoption of 1.9 more cows. The last two changes are responsible for most of averted GHG emissions dues to the program.</p>
+<p>What evidence do we have that these assumptions are correct? Chabé-Ferret and Voia estimate the impact of the program on the forest and crop areas. Their estimates indicate that the area in forest has not been affected, and that the area in crops has decreased, thereby giving some credence to the assumptions.</p>
+<p>There are several limitations to the results in Chabé-Ferret and Voia:</p>
+<ul>
+<li><p>They are very imprecise. Similar estimates using larger datasets such as the ones used by Gallic and Marcus are needed.</p></li>
+<li><p>They do not distinguish between types of crops and do not measure the impact of the program on the intensity of nitrogen fertilizers on these crops. Ideally, additionality should be measured on the total fertilizer use and on the type of crop used. It is unclear whether the data on the Pratiques Culturales survey would be large enough to obtain precise estimates here.</p></li>
+<li><p>They do not estimate the impact of the program on the total number of cows on the farm. Half of the estimated GHG savings stem from the assumed decrease in the number of cows thanks to the program. A smaller decrease than the one assumed would decrease the effectiveness of the program.</p></li>
+<li><p>They use farm level data, and not land use data. Farm level data might miss important impacts of the program on abandonement: the switch of land from agriculture to abandoned area, which slowly becomes a bush and then a forest. If the program has decreased abandonement, it might have increased GHG emissions. Investigating the impact of the program on abandonment is thus crucial. Great data to do just that are the results of the Teruti survey, and maybe the results of the Sentinele satellite network.</p></li>
+</ul>
+</div>
+<div id="does-the-program-trigger-carbon-emissions-elsewhere" class="section level3">
+<h3>Does the program trigger carbon emissions elsewhere?</h3>
+<p>For the program to contribute to fighting climate change, it has to be that the GHG emissions it saves are not replaced by other GHG emissions somewhere else, and that the estimated GHG emissions are not spurious. Both of these phenomena are referred to as leakage.</p>
+<p>Spurious GHG savings could happen if farmers receiving the subsidy sell their cropland to their neighbors that do not receive the subsidy and buy their grassland. If that happens, the estimates presented here that compare subsidized farmers to non subsidized farmers are spurious, and overestimate the effectiveness of the program.</p>
+<p>In order to test for this, Chabé-Ferret and Voia estimate the impact of the program on land use both at the individual and at the commune level. In this last specification, they treat both subsidized and nonsubsidized farmers as potentially impacted by the subsidy. They do find a small positive impact whether the estimation is performed at the individual or commune level, suggesting no such exchanges took place. But the results from Chabé-Ferret and Voia are imprecise and do not exclude some level of leakage. Moreover, Chabé-Ferret and Voia do detect that more land is rented in communes where the program is the most active, a possible indication of an increase in exchanges on the land market. More research is needed with more precise estimates of land use at the commune level, such as for example the Teruti survey, or the Sentinelle satellite network.</p>
+<p>Leakage might also occur because the program triggers emissions elsewhere. This migth happen for example if the program triggers an increase in the price of crops, that generates an increase in crop supply. That increase in crop supply might in turn increase GHG emissions by increasing nitrogen use or by trigering the conversion of forest or grassland to crops. Another impact could be that the subsidy increases (or decreases) the supply of meat, thereby triggering an increase (or a decrease) in supply and possibly substitution effects to other food.</p>
+<p>It is very hard to test for these impacts directly. One possibility would be to use preexisting trade networks such as farmers’ co-ops and look at whether the effects of the program trickle down along these networks. To our knwoledge, this has never been attempted. Another route would be to use supply and demand elasticities from the literature to calibrate the responses of the economy to the program.</p>
+</div>
+</div>
+<div id="how-the-result-is-obtained" class="section level2">
+<h2>How the result is obtained</h2>
+<p>The rest of this page describes how the results was obtained and reports tests for publication bias.</p>
+<div id="the-individual-studies" class="section level3">
+<h3>The individual studies</h3>
+<p>The individual studies are:</p>
 <ul>
 <li>Chabé-Ferret and Subervie (2009) using observational methods</li>
 <li>Chabé-Ferret and Voia (2019) using the 2000 reform of the program as a natural experiment</li>
 <li>Gallic and Marcus (2018) using the 2015 reform of the program as a natural experiment</li>
 </ul>
-<p>The overall estimate is of 95 <span class="math inline">\(\pm\)</span> 27 Euros per ton of C02. This is still much higher than the social cost of C02 of 24 Euros per ton of C02 as estimated by the US EPA. It is close to the most recent estimates of the social cost of carbon stemming from the Quinet report.</p>
-<div id="meta-analysis-of-individual-studies" class="section level3">
-<h3>Meta-Analysis of Individual Studies</h3>
+<p>Their results can be found <a href="https://docs.google.com/spreadsheets/d/1RKZZuAAnGMUKgoFTQskVSCoMsOxzpcPp-RCZbHgvsK8/edit?usp=sharing">here</a>. Below is the code sending the results of the individual studies to the SKY database (once each study will have its own page, this will not be needed anymore):</p>
+<pre class="r"><code># dowlnloading and sending table with individual studies
+data.GCP &lt;- gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1RKZZuAAnGMUKgoFTQskVSCoMsOxzpcPp-RCZbHgvsK8/edit?usp=sharing&quot;)
+colnames(data.GCP) &lt;- c(&quot;paper.id&quot;,&quot;authors&quot;,&quot;year&quot;,&quot;cost&quot;,&quot;se.cost&quot;)
+data.GCP &lt;- as.data.frame(data.GCP)
+dbWriteTable(SKY.db,&#39;GCP&#39;,data.GCP,overwrite=TRUE)</code></pre>
+</div>
+<div id="meta-analysis-of-the-individual-studies" class="section level3">
+<h3>Meta-analysis of the individual studies</h3>
+<p>The meta-analysis is conducted using the fixed-effects method, assuming that the cost-effectiveness of the French Grassland Conservation Program is</p>
+<pre class="r"><code>data.GCP$var.cost &lt;- data.GCP$se.cost^2
+meta.GCP.FE &lt;- rma(yi = data.GCP$cost,vi=data.GCP$var.cost,method=&quot;FE&quot;)
+summary(meta.GCP.FE)</code></pre>
+<pre class="r"><code># sending table with meta-analysis coef
+data.meta.CC &lt;- data.frame(program=&#39;French Grassland Conservation Program&#39;,
+                          coef = coef(meta.GCP.FE),
+                          se.coef=summary(meta.GCP.FE)$se,
+                          stringsAsFactors = F)
+dbUpdateResults(con=SKY.db,table=&#39;Meta_CC&#39;,data=data.meta.CC,where=c(&#39;program&#39;),update=c(&#39;coef&#39;,&#39;se.coef&#39;))</code></pre>
 <p><img src="GrasslandPES_files/figure-html/FE.forest.plot-1.png" width="672" /></p>
 </div>
 <div id="analysis-of-publication-bias" class="section level3">
 <h3>Analysis of Publication Bias</h3>
-<p>There is no evidence of publication bias in this dataset.</p>
+<pre class="r"><code>funnel(meta.GCP.FE)</code></pre>
 <p><img src="GrasslandPES_files/figure-html/FE.funnel.plot-1.png" width="672" /></p>
+<p>There is no evidence of publication bias in this dataset.</p>
+</div>
 </div>
 
 

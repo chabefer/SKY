@@ -1,0 +1,11 @@
+---
+title: "Methods"
+---
+
+When answering scientific questions, several tools have to be used. 
+A very important set of tools are statistical methods of causal inference.
+In this section of SKY, we provide link to three sources on methods of causal inference:
+
+* [Statistical Tools for Causal Inference](inference.html): an online book of tools of learn causal inference and their implementation with R
+* [Methodological Guidelines](guidelines.html): a set of methodological guidelines to follow for anyone reporting results to SKY
+* [Methodological Frontier](frontier.html): a list of ongoing methodological questions and research projects 

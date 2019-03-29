@@ -2,6 +2,30 @@
 title: "What are the Most Cost-Effective Ways to Fight Climate Change?"
 ---
 
+```{r libraries,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
+library(gsheet)
+library(metafor)
+#library(RMariaDB)
+library(RMySQL)
+library(knitr)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r source,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
+source('source.R')
+read_chunk('SKY_core_functions.R')
+SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,host=host)
+```
+
+```{r Results.to.SQL,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,results=FALSE}
+
+```
+
+```{r, constants,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
+SCC <- 24
+```
+
 Climate change is one of the most pressing issues facing mankind.
 In order to fight climate change, we have to find the most cost-effective ways to curb the emission of GreenHouse Gases (GHGs).
 A lot of different actions can be taken to combat climate change.
@@ -15,9 +39,17 @@ Among them are interventions on:
 Allocating the amount of public and private money to the most effective uses requires an estimate of the cost-effectiveness of the various options: how much do they cost per ton of C02 saved from the atmosphere?
 This monetary estimate is called the abatement cost of the option.
 
-This page of SKY is dedicated to gathering the cost-effectiveness estimates from the literature and to comparing them.
-Eeach separate estimate stems from a separate meta-analysis and proivides the link to the meta-analytical results and methodology, which itself links to the individual studies.
+Below is a graph comparing the estimated abatement costs of the various options with the social cost of carbon:
+```{r CE.CC,echo=FALSE,warning=FALSE,error=FALSE,message=FALSE,results=FALSE,fig.align='center',fig.cap='Abatement Cost of Various Options to Fight Climate Change  (in Euros/tonC02)'}
+Meta.CC <- dbReadTable(SKY.db,'Meta_CC')
+ggplot(Meta.CC, aes(x=program, y=coef)) + 
+  geom_pointrange(aes(ymin=coef-1.96*se.coef, ymax=coef+1.96*se.coef), width=.1) +
+  geom_hline(aes(yintercept=SCC),color='red',linetype='dashed')+
+  annotate('text',x=0.75,y=30,label='Social Cost of Carbon',color='red')+
+  expand_limits(y=c(0))+
+  ylab("Estimated Abatement Cost (in Euros/tonC02)")+
+  xlab("")+
+  theme_bw()
+```
 
-Eventually, estimates of the abatement cost of each option has to be compared with the estimated social cost of carbon.
-
-
+It appears that the French Grassland Conservation Program is currently not a cost-effective way to fight climate change: its abatement cost is largely above the social cost of carbon.
