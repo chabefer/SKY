@@ -1,8 +1,7 @@
 ---
-title: "Answers to Questions"
+title: "Interventions"
 ---
 
-SKY's goal is to provide the most up-to-date, aggregated, rigorous, simple and easy-to-use account of the existing evidence available on a topic.
 SKY hosts for the moment the answers to several questions relative to environmental policies and educational interventions:
 
 * Environment 

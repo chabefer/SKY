@@ -5,8 +5,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Answers to Questions"
-      href: meta.html
+    - text: "Effectiveness of Interventions"
+      href: Interventions.html
+    - text: "Evidence on Theories"
+      href: Theories.html
     - text: "Methods"
       href: methods.html
     - text: "About"
