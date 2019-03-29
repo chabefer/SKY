@@ -1,0 +1,18 @@
+---
+title: "Are Socio-Emotional Learning Programs Effective?"
+---
+
+*This article is a stub.*
+*Do not hesitate to substantiate.*
+
+Socio-Emotional Learning (SEL) programs aim at developing social and emotional competencies in children with the goal of improving their well-being, decreasing violence between children and between adults and children and improving academic outcomes.
+Most SEL programs aim at teaching the following problem-solving algorithm:
+
+* Identifying and labelling emotions
+* Identifying the problems behind negative emotions
+* Figuring out possible responses to the problem
+* Figuring out the consequences of each possible response
+* Choosing and implementing the most adequate response
+
+The first (to our knowledge) meta-analysis of the impact of SEL programs can be found [here](https://doi.org/10.1111/j.1467-8624.2010.01564.x).
+A more recent meta-analysis focusing on group-based SEL programs for parents can be found [here](http://www.cochrane.org/CD008225/BEHAV_group-parenting-programmes-for-improving-behavioural-problems-in-children-aged-3-to-12-years). 

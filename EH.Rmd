@@ -1,0 +1,7 @@
+---
+title: "Is Exercise Associated with Better Health Outcomes in Old Age?"
+---
+
+Exercise is thought to improve the health in old age by improving bone and muscle structure, avoiding falls and increasing morale.
+
+The most recent (to our knwoledge) meta-analysis of the impact of exercise on health can be found [here](https://doi.org/10.1001/jamainternmed.2018.5406) 

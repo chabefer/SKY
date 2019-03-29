@@ -8,11 +8,8 @@ SKY ambitions to transform the way we do and share research in the social scienc
 
 * Accumulating all individual research results into a summarized state of knowledge for each important research question, mostly using meta-analysis tools.
 * Providing a clear status of what is known and what is not known in order to help researchers select and coordinate on the most important research projects, funders to allocate funds and policy-makers, journalists and citizens to assess the credibility, precision and breadth of knowledge on a given question.
-* Assessing the quality and scope of individual and collective research contributions, by measuring the contribution of individual research projects to accumulated knowledge, but also quantifying the amount of publication bias and specification search bias that a particular researcher or research team, or journal or editor has.
 * Providing an up-to-date source of econometric and statistical tools, as well as a list of open methodological isues and forums where these questions are tackled collectively.
 * Providing an environment to transparently register every step made on a research project (lab notes).
-* Providing an up-to-date list of accepted results in most fields, to be used for introductory lectures.
-
 
 SKY ambitions to fight the evils of the current scientific system:
 
@@ -22,3 +19,5 @@ SKY ambitions to fight the evils of the current scientific system:
 * Lack of publication of Null results
 * Lack of large collaborative initiatives 
 * Lack of replication
+
+You can find a more extensive description of the motivations behing SKY, how it works and how to contribute to it [here](https://economistjourney.blogspot.com/2019/03/sky-tool-for-decentralized-accumulation.html). 

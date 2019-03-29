@@ -1,5 +1,5 @@
 ---
-title: "Cost-Effectiveness of Grassland Conservation Programs"
+title: "Are Grassland Conservation Programs a Cost-Effective Way to Fight Climate Change?"
 ---
 
 ```{r libraries,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
@@ -151,7 +151,10 @@ dbWriteTable(SKY.db,'GCP',data.GCP,overwrite=TRUE)
 
 ### Meta-analysis of the individual studies
 
-The meta-analysis is conducted using the fixed-effects method, assuming that the cost-effectiveness of the French Grassland Conservation Program is 
+The meta-analysis is conducted using the fixed-effects method, assuming that the cost-effectiveness of the French Grassland Conservation Program is constant over time.
+This might be an unattractive asumption, since probably changes in prices might trigger changes in abatement costs.
+More estimates are needed in order to check whether this assumption is unlikely to hold.
+All the current evidence points to homogeneity of abatement costs over time, with the limited precision that we have.
 
 ```{r FE.meta,echo=TRUE,warning=FALSE,error=FALSE,message=FALSE,results=FALSE}
 data.GCP$var.cost <- data.GCP$se.cost^2

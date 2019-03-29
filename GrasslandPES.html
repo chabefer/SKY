@@ -11,7 +11,7 @@
 
 
 
-<title>Cost-Effectiveness of Grassland Conservation Programs</title>
+<title>Are Grassland Conservation Programs a Cost-Effective Way to Fight Climate Change?</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -302,7 +302,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Cost-Effectiveness of Grassland Conservation Programs</h1>
+<h1 class="title toc-ignore">Are Grassland Conservation Programs a Cost-Effective Way to Fight Climate Change?</h1>
 
 </div>
 
@@ -367,7 +367,7 @@ dbWriteTable(SKY.db,&#39;GCP&#39;,data.GCP,overwrite=TRUE)</code></pre>
 </div>
 <div id="meta-analysis-of-the-individual-studies" class="section level3">
 <h3>Meta-analysis of the individual studies</h3>
-<p>The meta-analysis is conducted using the fixed-effects method, assuming that the cost-effectiveness of the French Grassland Conservation Program is</p>
+<p>The meta-analysis is conducted using the fixed-effects method, assuming that the cost-effectiveness of the French Grassland Conservation Program is constant over time. This might be an unattractive asumption, since probably changes in prices might trigger changes in abatement costs. More estimates are needed in order to check whether this assumption is unlikely to hold. All the current evidence points to homogeneity of abatement costs over time, with the limited precision that we have.</p>
 <pre class="r"><code>data.GCP$var.cost &lt;- data.GCP$se.cost^2
 meta.GCP.FE &lt;- rma(yi = data.GCP$cost,vi=data.GCP$var.cost,method=&quot;FE&quot;)
 summary(meta.GCP.FE)</code></pre>

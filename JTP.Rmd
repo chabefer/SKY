@@ -1,0 +1,12 @@
+---
+title: "Are Job Training Programs Effective?"
+---
+
+*This article is a stub.*
+*Do not hesitate to substantiate.*
+
+Job Training Programs (JTPs) are used to train workers that have insufficient human capital in order to help them find better jobs and stay unemployed less frequently. 
+
+The first (to our knowledge) meta-analysis of the impact of JTPs on unemployment can be found [here](https://doi.org/10.1111/j.1468-0297.2010.02387.x).
+A more recent meta-analysis by the same team can be found [here](http://ftp.iza.org/dp9236.pdf).
+

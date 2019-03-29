@@ -1,0 +1,13 @@
+---
+title: "Are Mindfulness-based Interventions Effective?"
+---
+
+*This article is a stub.*
+*Do not hesitate to substantiate.*
+
+Mindfulness-based interventions use meditation to improve the focus and decrease the stress of students.
+
+The most recent (to our knowledge) meta-analysis of the effect of Mindfulness-based interventions on students can be found [here](https://doi.org/10.3389/fpsyg.2014.00603).
+
+No tests for publication bias is reported.
+The dataset is online and could be transported to SKY.

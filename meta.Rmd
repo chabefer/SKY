@@ -3,10 +3,16 @@ title: "Answers to Questions"
 ---
 
 SKY's goal is to provide the most up-to-date, aggregated, rigorous, simple and easy-to-use account of the existing evidence available on a topic.
-SKY hosts for the moment the answers to several questions relative to environmental policies:
+SKY hosts for the moment the answers to several questions relative to environmental policies and educational interventions:
 
 * [What are the Most Cost-Effective Ways to Fight Climate Change?](CC.html)
-* [What are the Most Cost-Effective Ways to Change Environmental Behaviors?](nudges.html)
+* [Are Nudges a Cost-Effective Way to Change Environmental Behavior?](nudges.html)
+* [Are Job Training Programs Effective?](JTP.html)
+* [Are Socio-Emotional Learning Programs Effective?](SEL.html)
+* [Are Growth-Mindset Interventions Effective?](GM.html)
+* [Are Mindfulness-based Interventions Effective?](MM.html)
+* [Is Exercise Associated with Better Health Outcomes in Old Age?](EH.html)
+
 
 
 

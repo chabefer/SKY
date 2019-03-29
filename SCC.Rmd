@@ -1,0 +1,15 @@
+---
+title: "The Social Cost of Carbon"
+---
+
+*This article is a stub.*
+*Do not hesitate to substantiate.*
+
+The Social Cost of Carbon (SCC) is the estimated cost to society of one ton of GreenHouse Gases (GHGs) emitted to the atmosphere, expressed in equivalent tons of CO2. 
+It is the key benchmark to which the cost every project trying to fight climate change has to be compared.
+Only projects with a cost lower that the SCC per ton of C02 are deemed cost-effective.
+
+Several agencies have reported estimates of the SCC.
+The US Environmental Protection Agency (EPA) estimates that the SCC is of 30 USD.
+
+
