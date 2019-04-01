@@ -5,7 +5,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Effectiveness of Interventions"
+    - text: "Evidence on Interventions"
       href: Interventions.html
     - text: "Evidence on Theories"
       href: Theories.html

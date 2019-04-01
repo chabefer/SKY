@@ -1,8 +1,8 @@
 ---
-title: "Interventions"
+title: "Evidence on the Effectiveness of Social Interventions"
 ---
 
-SKY hosts for the moment the answers to several questions relative to environmental policies and educational interventions:
+SKY hosts for the moment preliminary answers to several questions relative to the effectiveness of social interventions:
 
 * Environment 
     + [What are the Most Cost-Effective Ways to Fight Climate Change?](CC.html)
