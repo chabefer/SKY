@@ -9,10 +9,10 @@ This section is organized along the lines of the various methods social scientis
 
 * Randomized Controlled Trials
 * Natural Experiments
-  + Difference In Differences
-  + Regression Discontiuity Designs
-  + Instrumental Variables
-  + Kink Designs and Notches
+    + Difference In Differences
+    + Regression Discontiuity Designs
+    + Instrumental Variables
+    + Kink Designs and Notches
 * Observational Methods
 * Lab Experiments
 * Structural Models
