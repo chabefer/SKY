@@ -17,3 +17,4 @@ This section is organized along the lines of the various methods social scientis
 * Lab Experiments
 * Structural Models
 * Qualitative Methods
+* Meta-analysis

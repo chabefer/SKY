@@ -2,6 +2,9 @@
 title: "Are Grassland Conservation Programs a Cost-Effective Way to Fight Climate Change?"
 ---
 
+**Results on this page are mostly for the sake of example.**
+**They might change since the individual estimates have not been submitted to peer review yet.**
+
 ```{r libraries,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
 library(gsheet)
 library(metafor)
@@ -25,7 +28,6 @@ SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,ho
 ```{r, constants,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
 SCC <- 24
 ```
-
 
 Under certain conditions, grassland can avoid the emission of GHGs.
 A case in point is when grassland is extensively managed and replaces cropland.
@@ -54,6 +56,8 @@ It is close to the most recent estimates of the social cost of carbon stemming f
 ## Caveats and open questions
 
 The results presented above suffer from several limitations that might warrant further investigations and that might change the overall assessment of the cost-effectiveness of the program.
+We nevertheless believe that the estimate presented here is most likely a lower bound on the cost-effectiveness of such programs.
+Any improvement in estimates is most likely to come up with larger costs.
 
 ### How durable are the effects of the Grassland Conservation Program?
 
