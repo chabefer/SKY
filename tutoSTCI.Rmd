@@ -1,0 +1,12 @@
+---
+title: "Contributing an Entry to the book 'Statistical Tools for Causal Inference': A Tutorial"
+---
+
+# Contributing to "Statistical Tools for Causal Inference"
+
+In order to get SKY up and running on your computer, you have to install:
+
+* [R](https://cran.r-project.org/mirrors.html)
+* [Rstudio](https://www.rstudio.com/products/rstudio/download/)
+* [Latex](https://www.latex-project.org/get/#tex-distributions) Only if you want to generate pdfs.
+If you have no Latex suite on your compputer and do not knwo how to install one, the recommended procedure is tu use the [tinytex package](https://bookdown.org/yihui/rmarkdown/installation.html) on R.
