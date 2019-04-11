@@ -328,7 +328,7 @@ $(document).ready(function () {
 <li>Install <a href="https://git-scm.com/downloads">Git</a>.</li>
 <li>Create an account on <a href="https://github.com">GitHub</a>. The entire procedure is described <a href="https://git-scm.com/book/en/v2/GitHub-Account-Setup-and-Configuration">here</a>.</li>
 </ul>
-<p>Rstudio is a GUI, so you could manage without it, but at a tremendous cost. Rstudio features amazing tools to help process RMarkdown code. It is also integrated with Git, which makes the SKY experience almost seamless. Fortunately, there still are some commands to drop in the shell, so that you can feel like a true hacker.</p>
+<p>Rstudio is a GUI, so you could manage without it, but at a tremendous cost. Rstudio features amazing tools to help process RMarkdown code. It is also integrated with Git, which makes the SKY experience almost seamless. You won’t have any command to drop in the shell :( Don’t worry, if you really want to feel like a true hacker, you can use the Git command line ;)</p>
 <p>You could also manage without a GitHub account, but that would be dreary.</p>
 </div>
 <div id="packages" class="section level3">
@@ -387,11 +387,7 @@ $(document).ready(function () {
 </ol>
 <pre class="r"><code>username &lt;- &#39;yourusername&#39;
 password &lt;- &#39;yourpassword&#39;</code></pre>
-<<<<<<< HEAD
 <p>with <code>yourusername</code> and <code>yourpassword</code> the username and password that I’ve just sent you. 3. Save the <code>source_blank.R</code> file as <code>source.R</code>. Do not forget this last step, otherwise everyone in the world will have access to your id and password for the SKY MySQL database).</p>
-=======
-<p>with <code>yourusername</code> and <code>yourpassword</code> the username and password that I’ve just sent you.</p>
->>>>>>> 354ae263a8efc35529189252b1a550af92997f59
 </div>
 <div id="build" class="section level3">
 <h3>Build</h3>
@@ -460,21 +456,19 @@ SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,ho
 <div id="uploading-your-changes-to-sky" class="section level2">
 <h2>Uploading your changes to SKY</h2>
 <p>Ok, so now you’ve worked on SKY for some time, you have made adjustments, corrected typos, tinkered with the code, maybe even added a page or some data. How do you move all of this to SKY? This is where Git and GitHub come in handy Let’s read on ;)</p>
-<<<<<<< HEAD
 <div id="commiting-your-changes-to-git" class="section level3">
 <h3>Commiting your changes to Git</h3>
 <p>The first thing to do is to tell your local Git repository that you have made all these changes. In order to do so, click on the <code>Git</code> thumbnail on the top right corner of the Rstudio window. All the files that you have either created or modified should appear there. The files that you have modified should have a blue <code>M</code> in front of them. The files that you have created should have a yellow question mark in front of them.</p>
 <p>Click on the <code>Staged</code> button in front of each of the modified or newly created file. This stages your files for Git. For a modified file, it tells Git that it should commit their changes if you ask him to. The blue <code>M</code> moves to the left, indicating that the modifications are now ready to be committed. For a created file, staging says to Git to add them to the list of files that it follows. A green <code>A</code> appears in fron of the file, ir has been <code>Added</code> to the Git repo.</p>
-<p>Click on the <code>Commit</code> button at the top of the Git window. A new window, the committing window, appears. Type a clear commit message explaining what you did in the <code>Commit message</code> box. Click on the <code>Commit</code> button just below the <code>Commit message</code> box. Done! You can close the commit window.</p>
+<p>Click on the <code>Commit</code> button at the top of the Git window. A new window, the committing window, appears. Type a clear commit message explaining what you did in the <code>Commit message</code> box. Click on the <code>Commit</code> button just below the <code>Commit message</code> box. A new box opens. Close it when the Git code has finished running Close the commit window. Done!</p>
 </div>
 <div id="sending-your-changes-to-your-github-repository" class="section level3">
 <h3>Sending your changes to your GitHub repository</h3>
-<p>eeeee</p>
-=======
-<div id="commit-your-changes-to-git" class="section level3">
-<h3>Commit your changes to Git</h3>
-<p>The first thing to do is to tell your local Git repository that you have made all these changes.</p>
->>>>>>> 354ae263a8efc35529189252b1a550af92997f59
+<p>You will not believe this, but sending your chnges to GitHub repository only requires to click on one button. Yes, only one. It is the <code>Push</code> button marked with a green arrow pointing upwards in the Git panel. Go ahead and click ;) A box should open, and then a window asking you your id and password for accessing your GitHub account. Fill in the info. Click on <code>Submit</code>. Done! You have almost made your first contribution to open science.</p>
+</div>
+<div id="sending-a-merge-request" class="section level3">
+<h3>Sending a merge request</h3>
+<p>When you are happy with what you have done and do not see how to improve it further, you can notify SKY of your changes and ask for them to be included into the actual website. In order to do so, you have to log in to your GitHub account and go to the <strong>SKY</strong> page on YOUR account <code>https://github.com/YourGitHubUserName/SKY</code>. Click on the <code>New Pull Request</code> button and follow the instructions tht you are given. If you are uncertain of what to do, look <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">here</a>. Once you have submitted your pull request, I will examine it, we might have some back and forth and then, If everything is OK, I’ll accept the pull request. Your work will be merged into SKY and will appear online. You will have made your first contribution to open science! Congrats :)</p>
 </div>
 </div>
 

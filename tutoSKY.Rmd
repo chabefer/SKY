@@ -280,6 +280,22 @@ You will not believe this, but sending your chnges to GitHub repository only req
 Yes, only one.
 It is the ``Push`` button marked with a green arrow pointing upwards in the Git panel.
 Go ahead and click ;)
+A box should open, and then a window asking you your id and password for accessing your GitHub account.
+Fill in the info.
+Click on ``Submit``.
+Done!
+You have almost made your first contribution to open science.
+
+### Sending a merge request
+
+When you are happy with what you have done and do not see how to improve it further, you can notify SKY of your changes and ask for them to be included into the actual website.
+In order to do so, you have to log in to your GitHub account and go to the **SKY** page on YOUR account ``https://github.com/YourGitHubUserName/SKY ``.
+Click on the ``New Pull Request`` button and follow the instructions tht you are given.
+If you are uncertain of what to do, look [here](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project).
+Once you have submitted your pull request, I will examine it, we might have some back and forth and then, If everything is OK, I'll accept the pull request.
+Your work will be merged into SKY and will appear online.
+You will have made your first contribution to open science!
+Congrats :)
 
 
 

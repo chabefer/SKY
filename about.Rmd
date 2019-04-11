@@ -25,6 +25,3 @@ Important documentation:
 * The most updated set of [rules of the game](ROG.html) for contributing to SKY.
 * A [tutorial](tuto.html) guiding you step by step on how to contribute to SKY.
 * A more extensive [description](https://economistjourney.blogspot.com/2019/03/sky-tool-for-decentralized-accumulation.html) of the motivations behing SKY, how it works and how to contribute to it. 
-
-
-Test
