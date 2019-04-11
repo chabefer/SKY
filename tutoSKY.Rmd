@@ -29,7 +29,8 @@ The entire procedure is described [here](https://git-scm.com/book/en/v2/GitHub-A
 Rstudio is a GUI, so you could manage without it, but at a tremendous cost.
 Rstudio features amazing tools to help process RMarkdown code. 
 It is also integrated with Git, which makes the SKY experience almost seamless.
-Fortunately, there still are some commands to drop in the shell, so that you can feel like a true hacker.
+You won't have any command to drop in the shell :(
+Don't worry, if you really want to feel like a true hacker, you can use the Git command line ;)
 
 You could also manage without a GitHub account, but that would be dreary.
 
@@ -275,6 +276,9 @@ Done!
 
 ### Sending your changes to your GitHub repository
 
-
+You will not believe this, but sending your chnges to GitHub repository only requires to click on one button.
+Yes, only one.
+It is the ``Push`` button marked with a green arrow pointing upwards in the Git panel.
+Go ahead an click ;)
 
 
