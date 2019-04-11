@@ -94,22 +94,13 @@ In order to do so:
 
 1. Drop an email requesting id and password for the SKY SQL database at SKY.initiative.SCF[at]gmail.com
 2. Update the username and password you've just received into the ``source_blank.R`` file, so that it reads:
-<<<<<<< HEAD
-=======
-
->>>>>>> 354ae263a8efc35529189252b1a550af92997f59
 ```{r idSQL,echo=TRUE,eval=FALSE}
 username <- 'yourusername'
 password <- 'yourpassword'
 ```
-<<<<<<< HEAD
 with `` `r 'yourusername'` `` and `` `r 'yourpassword'` `` the username and password that I've just sent you.
 3. Save the ``source_blank.R`` file as ``source.R``.
 Do not forget this last step, otherwise everyone in the world will have access to your id and password for the SKY MySQL database).
-=======
-
-with `` `r 'yourusername'` `` and `` `r 'yourpassword'` `` the username and password that I've just sent you.
->>>>>>> 354ae263a8efc35529189252b1a550af92997f59
 
 ### Build
 
@@ -258,7 +249,6 @@ How do you move all of this to SKY?
 This is where Git and GitHub come in handy
 Let's read on ;)
 
-<<<<<<< HEAD
 ### Commiting your changes to Git
 
 The first thing to do is to tell your local Git repository that you have made all these changes.
@@ -282,16 +272,6 @@ Done!
 You can close the commit window.
 
 ### Sending your changes to your GitHub repository
-
-eeeee
-
-
-
-=======
-### Commit your changes to Git
-
-The first thing to do is to tell your local Git repository that you have made all these changes.
->>>>>>> 354ae263a8efc35529189252b1a550af92997f59
 
 
 
