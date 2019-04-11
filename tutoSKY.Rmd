@@ -279,6 +279,7 @@ Done!
 You will not believe this, but sending your chnges to GitHub repository only requires to click on one button.
 Yes, only one.
 It is the ``Push`` button marked with a green arrow pointing upwards in the Git panel.
-Go ahead an click ;)
+Go ahead and click ;)
+
 
 
