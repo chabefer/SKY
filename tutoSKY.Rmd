@@ -268,8 +268,10 @@ Click on the ``Commit`` button at the top of the Git window.
 A new window, the committing window, appears.
 Type a clear commit message explaining what you did in the ``Commit message`` box.
 Click on the ``Commit`` button just below the ``Commit message`` box.
+A new box opens.
+Close it when the Git code has finished running
+Close the commit window.
 Done! 
-You can close the commit window.
 
 ### Sending your changes to your GitHub repository
 
