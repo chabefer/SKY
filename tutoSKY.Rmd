@@ -192,7 +192,7 @@ All of them are illustrated in the ``GrasslandPES.Rmd`` file.
 
 The first way is simply to link to a GoogleSheet where estimates are stored or papers are listed.
 In order to do so, hit the ``Share`` button on the GoogleSheet page, choose ``Anyone with the link can edit`` and copy/paste the link to SKY using the Rmarkdown command ``[text](link)``.
-See the example just abive the code chunk ``sendingGCP`` in the ``GrasslandPES.Rmd`` file.
+See the example just above the code chunk ``sendingGCP`` in the ``GrasslandPES.Rmd`` file.
 
 The second way is to download the data from the GoogleSheet into SKY.
 In order to do so, you have to use the ``gsheet`` package, by calling it into an R code chunk with ``library(gsheet)``.
@@ -257,27 +257,27 @@ The first thing to do is to tell your local Git repository that you have made al
 In order to do so, click on the ``Git`` thumbnail on the top right corner of the Rstudio window.
 All the files that you have either created or modified should appear there.
 The files that you have modified should have a blue ``M`` in front of them.
-The files that you have created should have a yellow question mark in front of them.
+The files that you have created should have a yellow ``?`` in front of them.
 
 Click on the ``Staged`` button in front of each of the modified or newly created file.
 This stages your files for Git.
 For a modified file, it tells Git that it should commit their changes if you ask him to.
 The blue ``M`` moves to the left, indicating that the modifications are now ready to be committed.
 For a created file, staging says to Git to add them to the list of files that it follows.
-A green ``A`` appears in fron of the file, ir has been ``Added`` to the Git repo.
+A green ``A`` appears in front of the file, it has been ``Added`` to the Git repo.
 
 Click on the ``Commit`` button at the top of the Git window.
 A new window, the committing window, appears.
 Type a clear commit message explaining what you did in the ``Commit message`` box.
 Click on the ``Commit`` button just below the ``Commit message`` box.
 A new box opens.
-Close it when the Git code has finished running
+Close it when the Git code has finished running.
 Close the commit window.
 Done! 
 
 ### Sending your changes to your GitHub repository
 
-You will not believe this, but sending your chnges to GitHub repository only requires to click on one button.
+You will not believe this, but sending your changes to GitHub repository only requires to click on one button.
 Yes, only one.
 It is the ``Push`` button marked with a green arrow pointing upwards in the Git panel.
 Go ahead and click ;)
@@ -289,11 +289,11 @@ You have almost made your first contribution to open science.
 
 ### Sending a merge request
 
-When you are happy with what you have done and do not see how to improve it further, you can notify SKY of your changes and ask for them to be included into the actual website.
+When you are happy with what you have done and do not see how to improve it any further, you can notify **SKY** of your changes and ask for them to be included into the actual website.
 In order to do so, you have to log in to your GitHub account and go to the **SKY** page on YOUR account ``https://github.com/YourGitHubUserName/SKY ``.
-Click on the ``New Pull Request`` button and follow the instructions tht you are given.
+Click on the ``New Pull Request`` button and follow the instructions that you are given.
 If you are uncertain of what to do, look [here](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project).
-Once you have submitted your pull request, I will examine it, we might have some back and forth and then, If everything is OK, I'll accept the pull request.
+Once you have submitted your pull request, I will examine it, we might have some back and forth discussion and then, when everything is OK, I'll accept the pull request.
 Your work will be merged into SKY and will appear online.
 You will have made your first contribution to open science!
 Congrats :)
