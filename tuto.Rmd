@@ -1,0 +1,15 @@
+---
+title: 'How to Contribute to SKY: A Tutorial'
+---
+
+SKY is actually a collection of projects, so that I have made two tutorials:
+
+* [Contributing an entry on SKY (consensus article, individual research report, methodological guideline)](tutoSKY.html)
+* [Contributing an entry to the open source book "Statistical Tools for Causal Inference"](tutoSTCI.html)  
+
+Both projects rely on RMarkdown, but the second one adds a layer with the bookdown package, which requires a little more dexterity.
+Awesome broad tutorials for these two tools can be found here:
+
+* [RMarkdown](https://bookdown.org/yihui/rmarkdown/)
+* [Bookdown](https://bookdown.org/yihui/bookdown/)
+

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Contributing an Entry on SKY: A Tutorial</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">The Social Science Knowledge Accumulation Initiative</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Interventions.html">Evidence on Interventions</a>
+</li>
+<li>
+  <a href="Theories.html">Evidence on Theories</a>
+</li>
+<li>
+  <a href="methods.html">Methods</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Contributing an Entry on SKY: A Tutorial</h1>
+
+</div>
+
+
+<p>This article describes how to contribute an entry on SKY (consensus article, individual research report, methodological guideline). For contributing an entry to the open source book “Statistical Tools for Causal Inference”, see <a href="tutoSTCI.html">here</a>.</p>
+<p>SKY uses <a href="https://rmarkdown.rstudio.com">RMarkdown</a> and <a href="https://git-scm.com/">Git</a>. Awesome broad tutorials for these two softwares are:</p>
+<ul>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">RMarkdown book</a>, and <a href="https://rmarkdown.rstudio.com/authoring_basics.html">Getting Started with RMarkdown</a>.</li>
+<li><a href="https://git-scm.com/book/en/v2">Git book</a>.</li>
+</ul>
+<p>You do not need to read the two books to use SKY. But as you become more proficient, most of your questions will be answered in these books.</p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<div id="overall-software" class="section level3">
+<h3>Overall software</h3>
+<p>In order to get SKY up and running on your computer, you have to:</p>
+<ul>
+<li>Install <a href="https://cran.r-project.org/mirrors.html">R</a>.</li>
+<li>Install <a href="https://www.rstudio.com/products/rstudio/download/">Rstudio</a>.</li>
+<li>Install <a href="https://git-scm.com/downloads">Git</a>.</li>
+<li>Create an account on <a href="https://github.com">GitHub</a>. The entire procedure is described <a href="https://git-scm.com/book/en/v2/GitHub-Account-Setup-and-Configuration">here</a>.</li>
+</ul>
+<p>Rstudio is a GUI, so you could manage without it, but at a tremendous cost. Rstudio features amazing tools to help process RMarkdown code. It is also integrated with Git, which makes the SKY experience almost seamless. Fortunately, there still are some commands to drop in the shell, so that you can feel like a true hacker.</p>
+<p>You could also manage without a GitHub account, but that would be dreary.</p>
+</div>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<p>In R, you want to install the following packages:</p>
+<ul>
+<li><strong>metafor</strong>: for running meta-analysis</li>
+<li><strong>RMySQL</strong>: for dialoguing with the MySQL database.</li>
+<li><strong>gsheet</strong>: for dialoguing with Google Docs.</li>
+<li><strong>ggplot2</strong>: for beautiful graphs.</li>
+<li><strong>dplyr</strong>: for easy data manipulation.</li>
+</ul>
+<p>In order to install these packages, do as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Open Rstudio</li>
+<li>Click on <code>Tools</code>, <code>Install Packages</code></li>
+<li>Enter the names of the packages in the dialog box.</li>
+</ol>
+<p>Done!</p>
+</div>
+</div>
+<div id="getting-started" class="section level2">
+<h2>Getting started</h2>
+<p>You’re almost almost there.</p>
+<div id="forking-sky-on-github" class="section level3">
+<h3>Forking SKY on GitHub</h3>
+<p>Yep, that does not sound super cool, but it’s not as bad as it sounds. It just means that you are going to create your own version of SKY on GitHub. It is not necessary (you could dowload SKY directly from my repository), but it makes interactions much smoother because we can use all the GitHub infrastructure to communicate and merge your changes to SKY, instead of resorting to lines of code, and everyone hates lines of code, right? Convinced?</p>
+<p>OK, so you just have to log in to GitHub and to go to the <a href="https://github.com/chabefer/SKY">original GitHub repository</a>. Now, just click on the <em>Fork</em> button that you can see on the top right corner.</p>
+<div class="figure">
+<img src="https://git-scm.com/book/en/v2/images/forkbutton.png" />
+
+</div>
+<p>After a few seconds, you should be directed to your own repo, with your own copy of SKY.</p>
+</div>
+<div id="downloading-sky" class="section level3">
+<h3>Downloading SKY</h3>
+<p>In order to download SKY on your computer, follow the following steps in Rstudio:</p>
+<ol style="list-style-type: decimal">
+<li>Click on <code>File</code>, <code>New Project...</code></li>
+<li>In the dialog box, click on <code>Version Control</code></li>
+<li>In the following dialog box, click on <code>Git</code></li>
+<li>In the following dialog box, enter <code>https://github.com/YourGitHubUserName/SKY</code> in the <code>Repository URL</code> field, where <code>YourGitHubUserName</code> is your GitHub username. If you’re not sure what your username is, just copy/paste the whole address of the repo from the address bar of your web browser.</li>
+<li>Choose any name you want for the directory, although <strong>SKY</strong> seems appropriate.</li>
+<li>Click on <code>Browse</code> to select where you want the project to be on your computer.</li>
+<li>Don’t check the <code>Open in new session</code> box unless you wish to keep the current session open while a new Rstudio session is created with SKY on it.</li>
+<li>Click on <code>Create Project</code></li>
+</ol>
+<p>Rstudio clones all the files from the SKY repository and opens a session with SKY as main project. You’re almost there.</p>
+</div>
+<div id="id-and-password" class="section level3">
+<h3>Id and password</h3>
+<p>Before hitting the <code>Build</code> button (I know you want to :), there is one extra step (otherwise, you’re gonna have an error message and that’s really depressing). You need to receive an Id and a password for accessing the MySQL database (I cannot grant access to everyone for now). In order to do so:</p>
+<ol style="list-style-type: decimal">
+<li>Drop an email requesting id and password for the SKY SQL database at SKY.initiative.SCF[at]gmail.com</li>
+<li>Update the username and password you’ve just received into the <code>source_blank.R</code> file, so that it reads:</li>
+</ol>
+<pre class="r"><code>username &lt;- &#39;yourusername&#39;
+password &lt;- &#39;yourpassword&#39;</code></pre>
+<p>with <code>yourusername</code> and <code>yourpassword</code> the username and password that I’ve just sent you.</p>
+</div>
+<div id="build" class="section level3">
+<h3>Build</h3>
+<p>OK, now it’s time to hit the <code>Build</code> button and to get SKY to run on your computer. In order to do so, let’s click on the <code>Build</code> panel that is normally on the top right corner of the Rstudio window. Go ahead, and hit the <code>Build Website</code> button, yes, the one with a nice hammer on it. Shazam, you should have all the html files generated as well as a viewer opening with the SKY website there for your eyes to see.</p>
+</div>
+</div>
+<div id="making-changes-to-sky" class="section level2">
+<h2>Making changes to SKY</h2>
+<p>OK, so now, you’re in the big leagues, you know how to do collaborative open science. How to do it in practice? Here goes.</p>
+<p>Now you can make all the changes you want to SKY. You can update the text. You can tinker with the code. You can add a new webpage. You can add new data. Here is how you would do that.</p>
+<div id="updating-the-text" class="section level3">
+<h3>Updating the text</h3>
+<p>Updating the text is the easiest thing to do on SKY. Here is how to do it:</p>
+<ol style="list-style-type: decimal">
+<li>Locate the name of the page that you want to update. For example, go on SKY’s webpage and locate a page. Or, click on the <code>Build Website</code> button, go to the Rstudio Viewer (it should open automatically), click on the <code>Open in Browser</code> on the top left corner of the Viewer. Navigate the website in the browser (you’re actually navigating your own version of the website). Look at the url of the page in the address bar of your browser. What you’re looking for is the last part of the url: the one after the last <code>/</code> and before the <code>.html</code>. For example, for the url <code>https://chabefer.github.io/SKY/GrasslandPES.html</code>, <code>GrasslandPES</code> is the name of the page.</li>
+<li>Open the RMarkdown file that has generated this page. To do so, go to the <code>Files</code> panel in the bottom right corner of the Rstudio window. Locate the file that has the same name as the page you want to update but ends with <code>.Rmd</code>. It should be easy to do, since the files should be organized alphabetically. If they are not, you can make them by clicking on <code>Name</code>. For example, you can locate the file <code>GrasslandPES.Rmd</code>, or the <code>.Rmd</code> file behing the page that you’re reading right now, <code>tutoSKY.Rmd</code>.</li>
+<li>Make changes to the text in the Rmarkdown file. In order to do make changes, you need to understand a little about the Markdown syntax. All you need to know to get started is <a href="https://rmarkdown.rstudio.com/authoring_basics.html">here</a>.</li>
+</ol>
+</div>
+<div id="tinkering-with-the-r-code" class="section level3">
+<h3>Tinkering with the R code</h3>
+<p>What is awesome with an Rmarkdown document is that the code analyzing the data is seamlessly integrated in the same <code>.Rmd</code> file as the text commenting it, so that each time you build the website, or <code>Knit</code> the file, the R code is run and tables, figures, etc, are automatically generated. That’s what makes the constantly updated meta-analysis possible. Each change to the code and data is seamlessly translated in the web page or the pdf document. Also, you never lose track of how a results has been generated, so that it is costless to check a results by yourself. And if you do not want the code to run each time, the amazing <code>cache</code> option enables you to store the results from the chunk and neveer compute them as long as the code chunk has not changed. Pretty cool, huh?</p>
+<p>R code chunks appear in grey in between ticks in the <code>.Rmd</code> files. For example, the fourth code chunk in the <code>GrasslandPES.Rmd</code> file reads:</p>
+<pre><code>```{r constants,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
+SCC <- 24
+```</code></pre>
+<p>```, three ticks, marks the beginning and end of a code chunk. I’ll come back to code chunks later. But for now, you can locate each part of the R code and make changes to the statistical analysis.</p>
+</div>
+<div id="adding-a-new-webpage" class="section level3">
+<h3>Adding a new webpage</h3>
+<p>Now, you want to create a webpage for your own project. How would you do that? Well, read on.</p>
+<p>Click on the <code>+</code> button on the top left corner of the Rstudio window. Click on <code>R Markdown</code> and follow the steps (nothing irreparable is done here, so you can just keep the defaults settings). Save the new page under the name you want to give it. Remember, this name will be the url address of your page, so choose wisely. I suggest a short name, with some initials and a clear link to the goal of the page. Also, the page name has to be new, please check in the list of files that the name you have in mind has not already been attributed.</p>
+<p>Now, you’re done. You can start playing around with the page, changing the title, writing text, adding code.</p>
+<p>Do not forget to link your new page to the rest of SKY, either by linking it directly on the front pages <a href="Interventions.html">Interventions</a> and <a href="Theories.html">Theories</a>, or by linking to another article in SKY. The RMarkdown command to generate a link is simply <code>[text](NameOfYourPage.html)</code>.</p>
+</div>
+<div id="adding-new-data" class="section level3">
+<h3>Adding new data</h3>
+<p>There are several ways to bring data to SKY. All of them are illustrated in the <code>GrasslandPES.Rmd</code> file.</p>
+<p>The first way is simply to link to a GoogleSheet where estimates are stored or papers are listed. In order to do so, hit the <code>Share</code> button on the GoogleSheet page, choose <code>Anyone with the link can edit</code> and copy/paste the link to SKY using the Rmarkdown command <code>[text](link)</code>. See the example just abive the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
+<p>The second way is to download the data from the GoogleSheet into SKY. In order to do so, you have to use the <code>gsheet</code> package, by calling it into an R code chunk with <code>library(gsheet)</code>. I generally put all calls to packages in the first R code chunk of the RMarkdown document, that I generally call <code>libraries</code>, as I did in the <code>GrasslandPES.Rmd</code> example file. Then you simply have to call the data from GoogleSheet using the <code>gsheet2tbl</code> command: <code>data &lt;- gsheet2tbl(&quot;YourGoogleSheetUrl&quot;)</code>. See the example in the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
+<p>The third way is to download data from your computer. <a href="https://www.statmethods.net/input/importingdata.html">Here</a> is a quick tutorial on how to do that for different file formats. In order to make the data really available to the community though, you have to either put it into a GoogleSheet or send it to the MySQL repo (see below).</p>
+<p>The fourth way is to send the data directly to the SKY MySQL repo. In order to do so, you need to download the <code>RMySQL</code> package by adding <code>library(RMySQL)</code> to the <code>libraries</code> code chunk. Then, you need to connect to the <strong>SKY</strong> MySQL database. For this, you have to include the following code chunk in your page (I suggest to place it right after the <code>library</code> chunk):</p>
+<pre><code>```{r source,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
+source('source.R')
+read_chunk('SKY_core_functions.R')
+SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,host=host)
+```</code></pre>
+<p>``</p>
+<p>If you are sending a full table to the MySQL repo, you can use the following command to send the R dataframe called <code>data</code> to the <strong>SKY</strong> database, under the name <code>NewTable</code>: <code>dbWriteTable(SKY.db,'NewTable',data,overwrite=TRUE)</code>. See the example in the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
+<p>If you want to update an already existing Table in the <strong>SKY</strong> MySQL database, use the <code>dbUpdateResults</code> function that I’ve written. Imagine you want to send results stored in the variables <code>estimate1</code> and <code>estimate2</code> of an R dataframe called <code>data</code> to a table in the SKY MySQL server called <code>Table</code>, and that you want to update in this table only the entries that have the same characteristics <code>where1</code> and <code>where2</code> than in your dataframe (for example same program, or same paper id). Just call: <code>dbUpdateResults(con=SKY.db,table='Table',data=data,where=c('where1','where2'),update=c('estimate1','estimate2'))</code>. See the example in the code chunk <code>sending.meta</code> in the <code>GrasslandPES.Rmd</code> file.</p>
+</div>
+<div id="run-sky-with-your-changes" class="section level3">
+<h3>Run SKY with your changes</h3>
+<p>In order to run the changes you have made to SKY to see if they work, I suggest a two-step approach, but feel free to skip step one.</p>
+<ol style="list-style-type: decimal">
+<li>Check that the page you have modified runs as a stand alone document. In order to do so, click on the <code>knit</code> button in the top left corner of the Rstudio window. A new <code>html</code> page should appear. How nice, right?</li>
+<li>Run the whole SKY website. For that, hit the <code>Build Website</code> button, yes, the one with a nice hammer on it. OK, does the nice SKY website appear? If not, then you might have a bug.</li>
+</ol>
+</div>
+<div id="debugging" class="section level3">
+<h3>Debugging</h3>
+<p>Debugging in Rstudio is made super easy in this <a href="https://www.rstudio.com/products/rstudio/release-notes/debugging-with-rstudio/">tutorial</a>. You have to run the R code alone in order to debug, which is made super easy by the <code>Run</code> button in Rstudio, on the top right corner of the main window, the one with a green arrow on it.</p>
+<p>Bug messages from RMarkdown are in general pretty useful, so you should be able to decide where the problem comes from (R or Markdown) and from which chunk or part of the text.</p>
+</div>
+</div>
+<div id="uploading-your-changes-to-sky" class="section level2">
+<h2>Uploading your changes to SKY</h2>
+<p>Ok, so now you’ve worked on SKY for some time, you have made adjustments, corrected typos, tinkered with the code, maybe even added a page or some data. How do you move all of this to SKY? This is where Git and GitHub come in handy Let’s read on ;)</p>
+<div id="commit-your-changes-to-git" class="section level3">
+<h3>Commit your changes to Git</h3>
+<p>The first thing to do is to tell your local Git repository that you have made all these changes.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

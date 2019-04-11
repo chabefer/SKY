@@ -10,7 +10,7 @@ library(gsheet)
 library(metafor)
 #library(RMariaDB)
 library(RMySQL)
-library(knitr)
+#library(knitr)
 library(ggplot2)
 library(dplyr)
 ```
@@ -25,7 +25,7 @@ SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,ho
 
 ```
 
-```{r, constants,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
+```{r constants,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
 SCC <- 24
 ```
 
