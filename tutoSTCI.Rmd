@@ -10,6 +10,10 @@ library(knitr)
 cst <- "30%"
 ```
 
+The book [Statistical Tools of Causal Inference](https://chabefer.github.io/STCI/) is an open source resource freely editable by all.
+You can access the code behind the book on GitHub [here](https://github.com/chabefer/STCI).
+Do not hesitate to make moficiations and push them to the repo.
+
 In what follows, "Statistical Tools for Causal Inference" is abbreviated as STCI.
 
 ## Installation
