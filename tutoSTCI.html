@@ -11,7 +11,7 @@
 
 
 
-<title>Contributing an Entry to the book Statistical Tools for Causal Inference: A Tutorial</title>
+<title>Contributing an Entry to the Open Source Book Statistical Tools for Causal Inference: A Tutorial</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -204,19 +204,176 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Contributing an Entry to the book ‘Statistical Tools for Causal Inference’: A Tutorial</h1>
+<h1 class="title toc-ignore">Contributing an Entry to the Open Source Book ‘Statistical Tools for Causal Inference’: A Tutorial</h1>
 
 </div>
 
 
-<div id="contributing-to-statistical-tools-for-causal-inference" class="section level1">
-<h1>Contributing to “Statistical Tools for Causal Inference”</h1>
-<p>In order to get SKY up and running on your computer, you have to install:</p>
+<p>In what follows, “Statistical Tools for Causal Inference” is abbreviated as STCI.</p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<div id="overall-software" class="section level3">
+<h3>Overall software</h3>
+<p>In order to get the STCI book up and running on your computer, you have to:</p>
 <ul>
-<li><a href="https://cran.r-project.org/mirrors.html">R</a></li>
-<li><a href="https://www.rstudio.com/products/rstudio/download/">Rstudio</a></li>
-<li><a href="https://www.latex-project.org/get/#tex-distributions">Latex</a> Only if you want to generate pdfs. If you have no Latex suite on your compputer and do not knwo how to install one, the recommended procedure is tu use the <a href="https://bookdown.org/yihui/rmarkdown/installation.html">tinytex package</a> on R.</li>
+<li>Install <a href="https://cran.r-project.org/mirrors.html">R</a>.</li>
+<li>Install <a href="https://www.rstudio.com/products/rstudio/download/">Rstudio</a>.</li>
+<li>Install <a href="https://git-scm.com/downloads">Git</a>.</li>
+<li>Create an account on <a href="https://github.com">GitHub</a>. The entire procedure is described <a href="https://git-scm.com/book/en/v2/GitHub-Account-Setup-and-Configuration">here</a>.</li>
+<li>Install <a href="https://www.latex-project.org/get/#tex-distributions">Latex</a>, if you want to generate pdfs. If you have no Latex suite on your computer and do not knwo how to install one, the recommended procedure is tu use the <a href="https://bookdown.org/yihui/rmarkdown/installation.html">tinytex package</a> on R.</li>
 </ul>
+<p>Rstudio is a GUI, so you could manage without it, but at a tremendous cost. Rstudio features amazing tools to help process RMarkdown code. It is also integrated with Git, which makes the SKY experience almost seamless. You won’t have any command to drop in the shell :( Don’t worry, if you really want to feel like a true hacker, you can use the Git command line ;)</p>
+<p>You could also manage without a GitHub account, but that would be dreary.</p>
+</div>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
+<p>In R, you want to install the following packages:</p>
+<ul>
+<li><strong>ggplot2</strong>: for beautiful graphs.</li>
+<li><strong>dplyr</strong>: for easy data manipulation.</li>
+<li><strong>knitr</strong>: for running the RMarkdown code.</li>
+<li><strong>bookdown</strong>: for generating the book.</li>
+</ul>
+<p>In order to install these packages, do as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Open Rstudio</li>
+<li>Click on <code>Tools</code>, <code>Install Packages</code></li>
+<li>Enter the names of the packages in the dialog box.</li>
+</ol>
+<p>Or go to the <code>Packages</code> panel on the bottom right corner of the Rstudio window and click on <code>Install</code>.</p>
+<p><img src="tutoSTCI_files/PackagesPanel.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>In the window that has just opened, enter the name of the packages separated by either a space or a comma.</p>
+<p><img src="tutoSTCI_files/InstallWindow.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Done!</p>
+</div>
+</div>
+<div id="getting-started" class="section level2">
+<h2>Getting started</h2>
+<p>You’re almost almost there.</p>
+<div id="forking-stci-on-github" class="section level3">
+<h3>Forking STCI on GitHub</h3>
+<p>Forking does not sound super cool, but it’s not as bad as it sounds. It just means that you are going to create your own version of STCI on GitHub. It is not necessary (you could dowload STCI directly from my repository), but it makes interactions much smoother because we can use all the GitHub infrastructure to communicate and merge your changes to STCI, instead of resorting to lines of code, and everyone hates lines of code, right? Convinced?</p>
+<p>OK, so you just have to log in to GitHub and to go to the <a href="https://github.com/chabefer/STCI">original GitHub repository</a>. Now, just click on the <em>Fork</em> button that you can see on the top right corner.</p>
+<p><img src="https://git-scm.com/book/en/v2/images/forkbutton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>After a few seconds, you should be directed to your own repo, with your own copy of STCI.</p>
+</div>
+<div id="downloading-stci" class="section level3">
+<h3>Downloading STCI</h3>
+<p>In order to download STCI on your computer, follow the following steps in Rstudio:</p>
+<ol style="list-style-type: decimal">
+<li>Click on <code>File</code>, <code>New Project...</code></li>
+<li>In the dialog box, click on <code>Version Control</code></li>
+</ol>
+<p><img src="tutoSTCI_files/RstudioGitOpen.png" width="30%" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>In the following dialog box, click on <code>Git</code></li>
+</ol>
+<p><img src="tutoSTCI_files/VersionControl.png" width="30%" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>In the following dialog box, enter <code>https://github.com/YourGitHubUserName/STCI</code> in the <code>Repository URL</code> field, where <code>YourGitHubUserName</code> is your GitHub username.</li>
+</ol>
+<p><img src="tutoSTCI_files/CloneGit.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>If you’re not sure what your username is, just copy/paste the whole address of the repo from the address bar of your web browser.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Choose any name you want for the directory, although <strong>STCI</strong> seems appropriate.</li>
+<li>Click on <code>Browse</code> to select where you want the project to be on your computer.</li>
+<li>Don’t check the <code>Open in new session</code> box unless you wish to keep the current session open while a new Rstudio session is created with STCI on it.</li>
+<li>Click on <code>Create Project</code></li>
+</ol>
+<p>Rstudio clones all the files from the STCI repository and opens a session with STCI as main project. You’re almost there.</p>
+</div>
+<div id="build" class="section level3">
+<h3>Build</h3>
+<p>OK, now it’s time to hit the <code>Build</code> button and to get STCI to run on your computer. In order to do so, let’s click on the <code>Build</code> panel that is normally on the top right corner of the Rstudio window.</p>
+<p><img src="tutoSTCI_files/BuildBook.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Go ahead, and hit the <code>Build Book</code> button, yes, the one with a nice hammer on it.</p>
+<p><img src="tutoSTCI_files/BuildBookButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Shazam, you should have all the html files generated as well as a viewer opening with the STCI book in website format for your eyes to see. If you click on the dowload icon:</p>
+<p><img src="tutoSTCI_files/Download.png" width="5%" style="display: block; margin: auto;" /></p>
+<p>you can retrieve the pdf version as well. Another way is to open the <code>/docs/</code> folder. That’s where the pdf file is stored, along with the <code>.html</code> files.</p>
+</div>
+</div>
+<div id="making-changes-to-stci" class="section level2">
+<h2>Making changes to STCI</h2>
+<p>Now you can make all the changes you want to the STCI book. You can update the text. You can tinker with the code. You can add a new webpage. You can add new data. Here is how you would do that.</p>
+<div id="updating-the-text" class="section level3">
+<h3>Updating the text</h3>
+<p>Updating the text is the easiest thing to do. Here is how to do it:</p>
+<ol style="list-style-type: decimal">
+<li>Open the <code>.Rmd</code> file that you want to update. Only <code>.Rmd</code> files should be updated, not <code>.html</code> files. At some points, you might want to fine tune the <code>.css</code> and <code>.yml</code> files, but not for now, young padawan. To do so, go to the <code>Files</code> panel in the bottom right corner of the Rstudio window and opend the RMarkdown files to find the one you want to alter.</li>
+</ol>
+<p><img src="tutoSTCI_files/FilesPanel.png" width="30%" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Make changes to the text in the Rmarkdown file. In order to do make changes, you need to understand a little bit how the Markdown syntax works. All you need to know to get started is <a href="https://rmarkdown.rstudio.com/authoring_basics.html">here</a>.</li>
+</ol>
+</div>
+<div id="tinkering-with-the-r-code" class="section level3">
+<h3>Tinkering with the R code</h3>
+<p>What is awesome with an Rmarkdown document is that the code analyzing the data is seamlessly integrated in the same <code>.Rmd</code> file as the text commenting it, so that each time you build the website, or <code>Knit</code> the file, the R code is run and tables, figures, etc, are automatically generated. That’s what makes the constantly updated meta-analysis possible. Each change to the code and data is seamlessly translated in the web page or the pdf document. Also, you never lose track of how a results has been generated, so that it is costless to check a results by yourself. And if you do not want the code to run each time, the amazing <code>cache</code> option enables you to store the results from the chunk and neveer compute them as long as the code chunk has not changed. Pretty cool, huh?</p>
+<p>R code chunks appear in grey in between ticks in the <code>.Rmd</code> files. For example, the third code chunk in the <code>01_FPI.Rmd</code> file reads:</p>
+<pre><code>```{r param.init,eval=TRUE,echo=TRUE,results='markup'}
+param <- c(8,.5,.28,1500)
+names(param) <- c("barmu","sigma2mu","sigma2U","barY")
+param
+```
+</code></pre>
+<p>```, three ticks, marks the beginning and end of a code chunk. I’ll come back to code chunks later. But for now, you can locate each part of the R code and make changes to the statistical analysis.</p>
+</div>
+<div id="adding-a-new-file" class="section level3">
+<h3>Adding a new file</h3>
+<p>The book is divided in several files. Files correspond to chapters in the book. The first file, where the title, authorship and introduction are located, is called <code>index.Rmd</code>. The following files are numeroted, from <code>01_Something.Rmd</code> to <code>02_Something_Else.Rmd</code>, etc.</p>
+<p>Now, you want to create a new file, so it has to be that you want to insert a new chapter into the STCI book. How would you do that? Well, read on.</p>
+<p>Click on the <code>+</code> button on the top left corner of the Rstudio window.</p>
+<p><img src="tutoSTCI_files/NewRmdButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Click on <code>R Markdown</code> and follow the steps (nothing irreparable is done here, so you can just keep the defaults settings). Save the new page under the name you want to give it. The numbering of the files decides the order in which they are organized in the book. So it is important to get the order right. If you want to add a file in between two preexisting files that follow each other, use the trick <code>01a_SomethingNew.Rmd</code> instead of renaming everything (Git can ddeal wirth renaming, but it is a little tricky).</p>
+<p>Now, you’re done. You can start playing around with the file, changing the title, writing text, adding code.</p>
+</div>
+<div id="run-stci-with-your-changes" class="section level3">
+<h3>Run STCI with your changes</h3>
+<p>In order to run the changes you have made to the STCI book to see if they work, I suggest a two-step approach, but feel free to skip step one.</p>
+<ol style="list-style-type: decimal">
+<li>Check that the page you have modified runs as a stand alone document. In order to do so, click on the <code>knit</code> button in the top left corner of the Rstudio window.</li>
+</ol>
+<p><img src="tutoSTCI_files/KnitButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>A new <code>.html</code> page should appear. How nice, right? If you click on the <code>Down</code> arrow close to the knit button, you can choose the format you want the output in, <code>.html</code> or <code>.pdf</code>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Run the whole STCI book. For that, hit the <code>Build Book</code> button, yes, the one with a nice hammer on it.</li>
+</ol>
+<p><img src="tutoSTCI_files/BuildBookButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>OK, does the nice STCI website appear? If not, then you might have a bug.</p>
+</div>
+<div id="debugging" class="section level3">
+<h3>Debugging</h3>
+<p>Debugging in Rstudio is made super easy in this <a href="https://www.rstudio.com/products/rstudio/release-notes/debugging-with-rstudio/">tutorial</a>. You have to run the R code alone in order to debug, which is made super easy by the <code>Run</code> button in Rstudio, on the top right corner of the main window, the one with a green arrow on it.</p>
+<p><img src="tutoSTCI_files/RunButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Bug messages from RMarkdown are in general pretty useful, so you should be able to decide where the problem comes from (R or Markdown) and from which chunk or part of the text.</p>
+</div>
+</div>
+<div id="uploading-your-changes-to-the-web" class="section level2">
+<h2>Uploading your changes to the web</h2>
+<p>Ok, so now you’ve worked on the STCI book for some time, you have made adjustments, corrected typos, tinkered with the code, maybe even added a page or some data. How do you move all of this to the web, so that SKY users can see it? This is where Git and GitHub come in handy Let’s read on ;)</p>
+<div id="commiting-your-changes-to-git" class="section level3">
+<h3>Commiting your changes to Git</h3>
+<p>The first thing to do is to tell your local Git repository that you have made all these changes. In order to do so, click on the <code>Git</code> thumbnail on the top right corner of the Rstudio window.</p>
+<p><img src="tutoSTCI_files/GitPanel.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>All the files that you have either created or modified should appear there. The files that you have modified should have a blue <code>M</code> in front of them. The files that you have created should have a yellow <code>?</code> in front of them.</p>
+<p>Click on the <code>Staged</code> button in front of each of the modified or newly created file. This stages your files for Git. For a modified file, it tells Git that it should commit their changes if you ask him to. The blue <code>M</code> moves to the left, indicating that the modifications are now ready to be committed. For a created file, staging says to Git to add them to the list of files that it follows. A green <code>A</code> appears in front of the file, it has been <code>Added</code> to the Git repo.</p>
+<p>Click on the <code>Commit</code> button at the top of the Git window. A new window, the committing window, appears.</p>
+<p><img src="tutoSTCI_files/CommitWindow.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Type a clear commit message explaining what you did in the <code>Commit message</code> box. Click on the <code>Commit</code> button just below the <code>Commit message</code> box. A new box opens. Close it when the Git code has finished running. Close the commit window. Done!</p>
+</div>
+<div id="sending-your-changes-to-your-github-repository" class="section level3">
+<h3>Sending your changes to your GitHub repository</h3>
+<p>You will not believe this, but sending your changes to GitHub repository only requires to click on one button. Yes, only one. It is the <code>Push</code> button marked with a green arrow pointing upwards in the Git panel.</p>
+<p><img src="tutoSTCI_files/PushButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>Go ahead and click ;) A box should open, and then a window asking you your id and password for accessing your GitHub account. Fill in the info. Click on <code>Submit</code>. Done! You have almost made your first contribution to open science.</p>
+</div>
+<div id="sending-a-merge-request" class="section level3">
+<h3>Sending a merge request</h3>
+<p>When you are happy with what you have done and do not see how to improve it any further, you can notify <strong>SKY</strong> of your changes and ask for them to be included into the actual website. In order to do so, you have to log in to your GitHub account and go to the <strong>STCI</strong> page on YOUR account <code>https://github.com/YourGitHubUserName/STCI</code>. Click on the <code>New Pull Request</code> button and follow the instructions that you are given.</p>
+<p><img src="tutoSTCI_files/NewPullButton.png" width="30%" style="display: block; margin: auto;" /></p>
+<p>If you are uncertain of what to do, look <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">here</a>. Once you have submitted your pull request, I will examine it, we might have some back and forth discussion and then, when everything is OK, I’ll accept the pull request. Your work will be merged into the original STCI project and will appear online. You will have made your first contribution to open science! Congrats :)</p>
+</div>
 </div>
 
 

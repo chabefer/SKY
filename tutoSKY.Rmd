@@ -51,12 +51,25 @@ In R, you want to install the following packages:
 * **gsheet**: for dialoguing with Google Docs.
 * **ggplot2**: for beautiful graphs.
 * **dplyr**: for easy data manipulation.
+* **knitr**: for running the RMarkdown code.
 
 In order to install these packages, do as follows:
 
 1. Open Rstudio
 2. Click on ``Tools``, ``Install Packages``
 3. Enter the names of the packages in the dialog box.
+
+Or go to the ``Packages`` panel on the bottom right corner of the Rstudio window and click on ``Install``.
+
+```{r PackagesPanel,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/PackagesPanel.png")
+```
+
+In the window that has just opened, enter the name of the packages separated by either a space or a comma.
+
+```{r InstallWindow,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/InstallWindow.png")
+```
 
 Done!
 
