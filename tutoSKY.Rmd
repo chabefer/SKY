@@ -7,7 +7,7 @@ library(knitr)
 ```
 
 ```{r parameters,echo=FALSE,message=FALSE,warning=FALSE}
-cst <- "20%"
+cst <- "30%"
 ```
 
 This article describes how to contribute an entry on SKY (consensus article, individual research report, methodological guideline).
