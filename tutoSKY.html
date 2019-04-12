@@ -90,14 +90,8 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
-}
-summary {
-  display: list-item;
 }
 </style>
 
@@ -113,6 +107,7 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
+
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -132,43 +127,6 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -190,77 +148,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -357,10 +256,7 @@ $(document).ready(function () {
 <h3>Forking SKY on GitHub</h3>
 <p>Yep, that does not sound super cool, but it’s not as bad as it sounds. It just means that you are going to create your own version of SKY on GitHub. It is not necessary (you could dowload SKY directly from my repository), but it makes interactions much smoother because we can use all the GitHub infrastructure to communicate and merge your changes to SKY, instead of resorting to lines of code, and everyone hates lines of code, right? Convinced?</p>
 <p>OK, so you just have to log in to GitHub and to go to the <a href="https://github.com/chabefer/SKY">original GitHub repository</a>. Now, just click on the <em>Fork</em> button that you can see on the top right corner.</p>
-<div class="figure">
-<img src="https://git-scm.com/book/en/v2/images/forkbutton.png" />
-
-</div>
+<p><img src="https://git-scm.com/book/en/v2/images/forkbutton.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>After a few seconds, you should be directed to your own repo, with your own copy of SKY.</p>
 </div>
 <div id="downloading-sky" class="section level3">
@@ -369,8 +265,18 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Click on <code>File</code>, <code>New Project...</code></li>
 <li>In the dialog box, click on <code>Version Control</code></li>
+</ol>
+<p><img src="tutoSTCI_files/RstudioGitOpen.png" width="20%" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
 <li>In the following dialog box, click on <code>Git</code></li>
-<li>In the following dialog box, enter <code>https://github.com/YourGitHubUserName/SKY</code> in the <code>Repository URL</code> field, where <code>YourGitHubUserName</code> is your GitHub username. If you’re not sure what your username is, just copy/paste the whole address of the repo from the address bar of your web browser.</li>
+</ol>
+<p><img src="tutoSTCI_files/VersionControl.png" width="20%" style="display: block; margin: auto;" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>In the following dialog box, enter <code>https://github.com/YourGitHubUserName/SKY</code> in the <code>Repository URL</code> field, where <code>YourGitHubUserName</code> is your GitHub username.</li>
+</ol>
+<p><img src="tutoSTCI_files/CloneGit.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>If you’re not sure what your username is, just copy/paste the whole address of the repo from the address bar of your web browser.</p>
+<ol start="5" style="list-style-type: decimal">
 <li>Choose any name you want for the directory, although <strong>SKY</strong> seems appropriate.</li>
 <li>Click on <code>Browse</code> to select where you want the project to be on your computer.</li>
 <li>Don’t check the <code>Open in new session</code> box unless you wish to keep the current session open while a new Rstudio session is created with SKY on it.</li>
@@ -383,18 +289,20 @@ $(document).ready(function () {
 <p>Before hitting the <code>Build</code> button (I know you want to :), there is one extra step (otherwise, you’re gonna have an error message and that’s really depressing). You need to receive an Id and a password for accessing the MySQL database (I cannot grant access to everyone for now). In order to do so:</p>
 <ol style="list-style-type: decimal">
 <li>Drop an email requesting id and password for the SKY SQL database at SKY.initiative.SCF[at]gmail.com</li>
-<li>Update the username and password you’ve just received into the <code>source_blank.R</code> file, so that it reads:</li>
+<li>Save the <code>source_blank.R</code> file as <code>source.R</code>. Do not forget this last step, otherwise everyone in the world will have access to your id and password for the SKY MySQL database).</li>
+<li>Update the username and password you’ve just received into the <code>source.R</code> file, so that it reads:</li>
 </ol>
 <pre class="r"><code>username &lt;- &#39;yourusername&#39;
 password &lt;- &#39;yourpassword&#39;</code></pre>
 <p>with <code>yourusername</code> and <code>yourpassword</code> the username and password that I’ve just sent you.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Save the <code>source_blank.R</code> file as <code>source.R</code>. Do not forget this last step, otherwise everyone in the world will have access to your id and password for the SKY MySQL database).</li>
-</ol>
 </div>
 <div id="build" class="section level3">
 <h3>Build</h3>
-<p>OK, now it’s time to hit the <code>Build</code> button and to get SKY to run on your computer. In order to do so, let’s click on the <code>Build</code> panel that is normally on the top right corner of the Rstudio window. Go ahead, and hit the <code>Build Website</code> button, yes, the one with a nice hammer on it. Shazam, you should have all the html files generated as well as a viewer opening with the SKY website there for your eyes to see.</p>
+<p>OK, now it’s time to hit the <code>Build</code> button and to get SKY to run on your computer. In order to do so, let’s click on the <code>Build</code> panel that is normally on the top right corner of the Rstudio window.</p>
+<p><img src="tutoSTCI_files/Build.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Go ahead, and hit the <code>Build Website</code> button, yes, the one with a nice hammer on it.</p>
+<p><img src="tutoSTCI_files/BuildButton.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Shazam, you should have all the html files generated as well as a viewer opening with the SKY website there for your eyes to see.</p>
 </div>
 </div>
 <div id="making-changes-to-sky" class="section level2">
@@ -406,9 +314,10 @@ password &lt;- &#39;yourpassword&#39;</code></pre>
 <p>Updating the text is the easiest thing to do on SKY. Here is how to do it:</p>
 <ol style="list-style-type: decimal">
 <li>Locate the name of the page that you want to update. For example, go on SKY’s webpage and locate a page. Or, click on the <code>Build Website</code> button, go to the Rstudio Viewer (it should open automatically), click on the <code>Open in Browser</code> on the top left corner of the Viewer. Navigate the website in the browser (you’re actually navigating your own version of the website). Look at the url of the page in the address bar of your browser. What you’re looking for is the last part of the url: the one after the last <code>/</code> and before the <code>.html</code>. For example, for the url <code>https://chabefer.github.io/SKY/GrasslandPES.html</code>, <code>GrasslandPES</code> is the name of the page.</li>
-<li>Open the RMarkdown file that has generated this page. To do so, go to the <code>Files</code> panel in the bottom right corner of the Rstudio window. Locate the file that has the same name as the page you want to update but ends with <code>.Rmd</code>. It should be easy to do, since the files should be organized alphabetically. If they are not, you can make them by clicking on <code>Name</code>. For example, you can locate the file <code>GrasslandPES.Rmd</code>, or the <code>.Rmd</code> file behing the page that you’re reading right now, <code>tutoSKY.Rmd</code>.</li>
-<li>Make changes to the text in the Rmarkdown file. In order to do make changes, you need to understand a little about the Markdown syntax. All you need to know to get started is <a href="https://rmarkdown.rstudio.com/authoring_basics.html">here</a>.</li>
+<li>Open the RMarkdown file that has generated this page. To do so, go to the <code>Files</code> panel in the bottom right corner of the Rstudio window.</li>
 </ol>
+<p><img src="tutoSTCI_files/FilesPanel.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Locate the file that has the same name as the page you want to update but ends with <code>.Rmd</code>. It should be easy to do, since the files should be organized alphabetically. If they are not, you can make them by clicking on <code>Name</code>. For example, you can locate the file <code>GrasslandPES.Rmd</code>, or the <code>.Rmd</code> file behing the page that you’re reading right now, <code>tutoSKY.Rmd</code>. 3. Make changes to the text in the Rmarkdown file. In order to do make changes, you need to understand a little about the Markdown syntax. All you need to know to get started is <a href="https://rmarkdown.rstudio.com/authoring_basics.html">here</a>.</p>
 </div>
 <div id="tinkering-with-the-r-code" class="section level3">
 <h3>Tinkering with the R code</h3>
@@ -422,14 +331,16 @@ SCC <- 24
 <div id="adding-a-new-webpage" class="section level3">
 <h3>Adding a new webpage</h3>
 <p>Now, you want to create a webpage for your own project. How would you do that? Well, read on.</p>
-<p>Click on the <code>+</code> button on the top left corner of the Rstudio window. Click on <code>R Markdown</code> and follow the steps (nothing irreparable is done here, so you can just keep the defaults settings). Save the new page under the name you want to give it. Remember, this name will be the url address of your page, so choose wisely. I suggest a short name, with some initials and a clear link to the goal of the page. Also, the page name has to be new, please check in the list of files that the name you have in mind has not already been attributed.</p>
+<p>Click on the <code>+</code> button on the top left corner of the Rstudio window.</p>
+<p><img src="tutoSTCI_files/NewRmdButton.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Click on <code>R Markdown</code> and follow the steps (nothing irreparable is done here, so you can just keep the defaults settings). Save the new page under the name you want to give it. Remember, this name will be the url address of your page, so choose wisely. I suggest a short name, with some initials and a clear link to the goal of the page. Also, the page name has to be new, please check in the list of files that the name you have in mind has not already been attributed.</p>
 <p>Now, you’re done. You can start playing around with the page, changing the title, writing text, adding code.</p>
 <p>Do not forget to link your new page to the rest of SKY, either by linking it directly on the front pages <a href="Interventions.html">Interventions</a> and <a href="Theories.html">Theories</a>, or by linking to another article in SKY. The RMarkdown command to generate a link is simply <code>[text](NameOfYourPage.html)</code>.</p>
 </div>
 <div id="adding-new-data" class="section level3">
 <h3>Adding new data</h3>
 <p>There are several ways to bring data to SKY. All of them are illustrated in the <code>GrasslandPES.Rmd</code> file.</p>
-<p>The first way is simply to link to a GoogleSheet where estimates are stored or papers are listed. In order to do so, hit the <code>Share</code> button on the GoogleSheet page, choose <code>Anyone with the link can edit</code> and copy/paste the link to SKY using the Rmarkdown command <code>[text](link)</code>. See the example just abive the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
+<p>The first way is simply to link to a GoogleSheet where estimates are stored or papers are listed. In order to do so, hit the <code>Share</code> button on the GoogleSheet page, choose <code>Anyone with the link can edit</code> and copy/paste the link to SKY using the Rmarkdown command <code>[text](link)</code>. See the example just above the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
 <p>The second way is to download the data from the GoogleSheet into SKY. In order to do so, you have to use the <code>gsheet</code> package, by calling it into an R code chunk with <code>library(gsheet)</code>. I generally put all calls to packages in the first R code chunk of the RMarkdown document, that I generally call <code>libraries</code>, as I did in the <code>GrasslandPES.Rmd</code> example file. Then you simply have to call the data from GoogleSheet using the <code>gsheet2tbl</code> command: <code>data &lt;- gsheet2tbl(&quot;YourGoogleSheetUrl&quot;)</code>. See the example in the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
 <p>The third way is to download data from your computer. <a href="https://www.statmethods.net/input/importingdata.html">Here</a> is a quick tutorial on how to do that for different file formats. In order to make the data really available to the community though, you have to either put it into a GoogleSheet or send it to the MySQL repo (see below).</p>
 <p>The fourth way is to send the data directly to the SKY MySQL repo. In order to do so, you need to download the <code>RMySQL</code> package by adding <code>library(RMySQL)</code> to the <code>libraries</code> code chunk. Then, you need to connect to the <strong>SKY</strong> MySQL database. For this, you have to include the following code chunk in your page (I suggest to place it right after the <code>library</code> chunk):</p>
@@ -446,13 +357,17 @@ SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,ho
 <h3>Run SKY with your changes</h3>
 <p>In order to run the changes you have made to SKY to see if they work, I suggest a two-step approach, but feel free to skip step one.</p>
 <ol style="list-style-type: decimal">
-<li>Check that the page you have modified runs as a stand alone document. In order to do so, click on the <code>knit</code> button in the top left corner of the Rstudio window. A new <code>html</code> page should appear. How nice, right?</li>
-<li>Run the whole SKY website. For that, hit the <code>Build Website</code> button, yes, the one with a nice hammer on it. OK, does the nice SKY website appear? If not, then you might have a bug.</li>
+<li>Check that the page you have modified runs as a stand alone document. In order to do so, click on the <code>knit</code> button in the top left corner of the Rstudio window.</li>
 </ol>
+<p><img src="tutoSTCI_files/KnitButton.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>A new <code>html</code> page should appear. How nice, right? 2. Run the whole SKY website. For that, hit the <code>Build Website</code> button, yes, the one with a nice hammer on it.</p>
+<p><img src="tutoSTCI_files/BuildButton.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>OK, does the nice SKY website appear? If not, then you might have a bug.</p>
 </div>
 <div id="debugging" class="section level3">
 <h3>Debugging</h3>
 <p>Debugging in Rstudio is made super easy in this <a href="https://www.rstudio.com/products/rstudio/release-notes/debugging-with-rstudio/">tutorial</a>. You have to run the R code alone in order to debug, which is made super easy by the <code>Run</code> button in Rstudio, on the top right corner of the main window, the one with a green arrow on it.</p>
+<p><img src="tutoSTCI_files/RunButton.png" width="20%" style="display: block; margin: auto;" /></p>
 <p>Bug messages from RMarkdown are in general pretty useful, so you should be able to decide where the problem comes from (R or Markdown) and from which chunk or part of the text.</p>
 </div>
 </div>
@@ -461,17 +376,25 @@ SKY.db <- dbConnect(MySQL(),dbname=dbname,username=username,password=password,ho
 <p>Ok, so now you’ve worked on SKY for some time, you have made adjustments, corrected typos, tinkered with the code, maybe even added a page or some data. How do you move all of this to SKY? This is where Git and GitHub come in handy Let’s read on ;)</p>
 <div id="commiting-your-changes-to-git" class="section level3">
 <h3>Commiting your changes to Git</h3>
-<p>The first thing to do is to tell your local Git repository that you have made all these changes. In order to do so, click on the <code>Git</code> thumbnail on the top right corner of the Rstudio window. All the files that you have either created or modified should appear there. The files that you have modified should have a blue <code>M</code> in front of them. The files that you have created should have a yellow question mark in front of them.</p>
-<p>Click on the <code>Staged</code> button in front of each of the modified or newly created file. This stages your files for Git. For a modified file, it tells Git that it should commit their changes if you ask him to. The blue <code>M</code> moves to the left, indicating that the modifications are now ready to be committed. For a created file, staging says to Git to add them to the list of files that it follows. A green <code>A</code> appears in fron of the file, ir has been <code>Added</code> to the Git repo.</p>
-<p>Click on the <code>Commit</code> button at the top of the Git window. A new window, the committing window, appears. Type a clear commit message explaining what you did in the <code>Commit message</code> box. Click on the <code>Commit</code> button just below the <code>Commit message</code> box. A new box opens. Close it when the Git code has finished running Close the commit window. Done!</p>
+<p>The first thing to do is to tell your local Git repository that you have made all these changes. In order to do so, click on the <code>Git</code> thumbnail on the top right corner of the Rstudio window.</p>
+<p><img src="tutoSTCI_files/GitPanel.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>All the files that you have either created or modified should appear there. The files that you have modified should have a blue <code>M</code> in front of them. The files that you have created should have a yellow <code>?</code> in front of them.</p>
+<p>Click on the <code>Staged</code> button in front of each of the modified or newly created file. This stages your files for Git. For a modified file, it tells Git that it should commit their changes if you ask him to. The blue <code>M</code> moves to the left, indicating that the modifications are now ready to be committed. For a created file, staging says to Git to add them to the list of files that it follows. A green <code>A</code> appears in front of the file, it has been <code>Added</code> to the Git repo.</p>
+<p>Click on the <code>Commit</code> button at the top of the Git window. A new window, the committing window, appears.</p>
+<p><img src="tutoSTCI_files/CommitWindow.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Type a clear commit message explaining what you did in the <code>Commit message</code> box. Click on the <code>Commit</code> button just below the <code>Commit message</code> box. A new box opens. Close it when the Git code has finished running. Close the commit window. Done!</p>
 </div>
 <div id="sending-your-changes-to-your-github-repository" class="section level3">
 <h3>Sending your changes to your GitHub repository</h3>
-<p>You will not believe this, but sending your chnges to GitHub repository only requires to click on one button. Yes, only one. It is the <code>Push</code> button marked with a green arrow pointing upwards in the Git panel. Go ahead and click ;) A box should open, and then a window asking you your id and password for accessing your GitHub account. Fill in the info. Click on <code>Submit</code>. Done! You have almost made your first contribution to open science.</p>
+<p>You will not believe this, but sending your changes to GitHub repository only requires to click on one button. Yes, only one. It is the <code>Push</code> button marked with a green arrow pointing upwards in the Git panel.</p>
+<p><img src="tutoSTCI_files/PushButton.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>Go ahead and click ;) A box should open, and then a window asking you your id and password for accessing your GitHub account. Fill in the info. Click on <code>Submit</code>. Done! You have almost made your first contribution to open science.</p>
 </div>
 <div id="sending-a-merge-request" class="section level3">
 <h3>Sending a merge request</h3>
-<p>When you are happy with what you have done and do not see how to improve it further, you can notify SKY of your changes and ask for them to be included into the actual website. In order to do so, you have to log in to your GitHub account and go to the <strong>SKY</strong> page on YOUR account <code>https://github.com/YourGitHubUserName/SKY</code>. Click on the <code>New Pull Request</code> button and follow the instructions tht you are given. If you are uncertain of what to do, look <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">here</a>. Once you have submitted your pull request, I will examine it, we might have some back and forth and then, If everything is OK, I’ll accept the pull request. Your work will be merged into SKY and will appear online. You will have made your first contribution to open science! Congrats :)</p>
+<p>When you are happy with what you have done and do not see how to improve it any further, you can notify <strong>SKY</strong> of your changes and ask for them to be included into the actual website. In order to do so, you have to log in to your GitHub account and go to the <strong>SKY</strong> page on YOUR account <code>https://github.com/YourGitHubUserName/SKY</code>. Click on the <code>New Pull Request</code> button and follow the instructions that you are given.</p>
+<p><img src="tutoSTCI_files/NewPullButton.png" width="20%" style="display: block; margin: auto;" /></p>
+<p>If you are uncertain of what to do, look <a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project">here</a>. Once you have submitted your pull request, I will examine it, we might have some back and forth discussion and then, when everything is OK, I’ll accept the pull request. Your work will be merged into SKY and will appear online. You will have made your first contribution to open science! Congrats :)</p>
 </div>
 </div>
 

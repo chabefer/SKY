@@ -2,6 +2,14 @@
 title: 'Contributing an Entry on SKY: A Tutorial'
 ---
 
+```{r libraries,echo=FALSE,message=FALSE,warning=FALSE}
+library(knitr)
+```
+
+```{r parameters,echo=FALSE,message=FALSE,warning=FALSE}
+cst <- "20%"
+```
+
 This article describes how to contribute an entry on SKY (consensus article, individual research report, methodological guideline).
 For contributing an entry to the open source book "Statistical Tools for Causal Inference", see [here](tutoSTCI.html).  
 
@@ -66,7 +74,9 @@ Convinced?
 OK, so you just have to log in to GitHub and to go to the [original GitHub repository](https://github.com/chabefer/SKY). 
 Now, just click on the *Fork* button that you can see on the top right corner.
 
-![](https://git-scm.com/book/en/v2/images/forkbutton.png)
+```{r Fork,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("https://git-scm.com/book/en/v2/images/forkbutton.png")
+```
 
 After a few seconds, you should be directed to your own repo, with your own copy of SKY.
 
@@ -76,9 +86,25 @@ In order to download SKY on your computer, follow the following steps in Rstudio
 
 1. Click on ``File``, ``New Project...``
 2. In the dialog box, click on ``Version Control``
+
+```{r RstudioGitOpen,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/RstudioGitOpen.png")
+```
+
 3. In the following dialog box, click on ``Git``
+
+```{r VersionControl,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/VersionControl.png")
+```
+
 4. In the following dialog box, enter ``https://github.com/YourGitHubUserName/SKY `` in the ``Repository URL`` field, where ``YourGitHubUserName`` is your GitHub username.
+
+```{r CloneGit,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/CloneGit.png")
+```
+
 If you're not sure what your username is, just copy/paste the whole address of the repo from the address bar of your web browser.
+
 5. Choose any name you want for the directory, although **SKY** seems appropriate.
 6. Click on ``Browse`` to select where you want the project to be on your computer.
 7. Don't check the ``Open in new session`` box unless you wish to keep the current session open while a new Rstudio session is created with SKY on it.
@@ -94,21 +120,30 @@ You need to receive an Id and a password for accessing the MySQL database (I can
 In order to do so:
 
 1. Drop an email requesting id and password for the SKY SQL database at SKY.initiative.SCF[at]gmail.com
-2. Update the username and password you've just received into the ``source_blank.R`` file, so that it reads:
+2. Save the ``source_blank.R`` file as ``source.R``.
+Do not forget this last step, otherwise everyone in the world will have access to your id and password for the SKY MySQL database).
+3. Update the username and password you've just received into the ``source.R`` file, so that it reads:
 ```{r idSQL,echo=TRUE,eval=FALSE}
 username <- 'yourusername'
 password <- 'yourpassword'
 ```
 with `` `r 'yourusername'` `` and `` `r 'yourpassword'` `` the username and password that I've just sent you.
 
-3. Save the ``source_blank.R`` file as ``source.R``.
-Do not forget this last step, otherwise everyone in the world will have access to your id and password for the SKY MySQL database).
-
 ### Build
 
 OK, now it's time to hit the ``Build`` button and to get SKY to run on your computer. 
 In order to do so, let's click on the ``Build`` panel that is normally on the top right corner of the Rstudio window.
+
+```{r Build,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/Build.png")
+```
+
 Go ahead, and hit the ``Build Website`` button, yes, the one with a nice hammer on it.
+
+```{r BuildButton,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/BuildButton.png")
+```
+
 Shazam, you should have all the html files generated as well as a viewer opening with the SKY website there for your eyes to see.
 
 ## Making changes to SKY
@@ -138,6 +173,11 @@ What you're looking for is the last part of the url: the one after the last ``/`
 For example, for the url ``https://chabefer.github.io/SKY/GrasslandPES.html ``, ``GrasslandPES`` is the name of the page.
 2. Open the RMarkdown file that has generated this page.
 To do so, go to the ``Files`` panel in the bottom right corner of the Rstudio window.
+
+```{r FilesPanel,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/FilesPanel.png")
+```
+
 Locate the file that has the same name as the page you want to update but ends with ``.Rmd``.
 It should be easy to do, since the files should be organized alphabetically.
 If they are not, you can make them by clicking on ``Name``.
@@ -173,6 +213,11 @@ How would you do that?
 Well, read on.
 
 Click on the ``+`` button on the top left corner of the Rstudio window.
+
+```{r NewRmdButton,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/NewRmdButton.png")
+```
+
 Click on ``R Markdown`` and follow the steps (nothing irreparable is done here, so you can just keep the defaults settings).
 Save the new page under the name you want to give it.
 Remember, this name will be the url address of your page, so choose wisely.
@@ -230,10 +275,20 @@ In order to run the changes you have made to SKY to see if they work, I suggest 
 
 1. Check that the page you have modified runs as a stand alone document.
 In order to do so, click on the ``knit`` button in the top left corner of the Rstudio window.
+
+```{r KnitButton,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/KnitButton.png")
+```
+
 A new ``html`` page should appear.
 How nice, right?
 2. Run the whole SKY website.
 For that, hit the ``Build Website`` button, yes, the one with a nice hammer on it.
+
+```{r BuildButton.2,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/BuildButton.png")
+```
+
 OK, does the nice SKY website appear?
 If not, then you might have a bug.
 
@@ -241,6 +296,10 @@ If not, then you might have a bug.
 
 Debugging in Rstudio is made super easy in this [tutorial](https://www.rstudio.com/products/rstudio/release-notes/debugging-with-rstudio/).
 You have to run the R code alone in order to debug, which is made super easy by the ``Run`` button in Rstudio, on the top right corner of the main window, the one with a green arrow on it.
+
+```{r RunButton,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/RunButton.png")
+```
 
 Bug messages from RMarkdown are in general pretty useful, so you should be able to decide where the problem comes from (R or Markdown) and from which chunk or part of the text.
 
@@ -255,6 +314,11 @@ Let's read on ;)
 
 The first thing to do is to tell your local Git repository that you have made all these changes.
 In order to do so, click on the ``Git`` thumbnail on the top right corner of the Rstudio window.
+
+```{r GitPanel,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/GitPanel.png")
+```
+
 All the files that you have either created or modified should appear there.
 The files that you have modified should have a blue ``M`` in front of them.
 The files that you have created should have a yellow ``?`` in front of them.
@@ -268,6 +332,11 @@ A green ``A`` appears in front of the file, it has been ``Added`` to the Git rep
 
 Click on the ``Commit`` button at the top of the Git window.
 A new window, the committing window, appears.
+
+```{r CommitWindow,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/CommitWindow.png")
+```
+
 Type a clear commit message explaining what you did in the ``Commit message`` box.
 Click on the ``Commit`` button just below the ``Commit message`` box.
 A new box opens.
@@ -280,6 +349,11 @@ Done!
 You will not believe this, but sending your changes to GitHub repository only requires to click on one button.
 Yes, only one.
 It is the ``Push`` button marked with a green arrow pointing upwards in the Git panel.
+
+```{r PushButton,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/PushButton.png")
+```
+
 Go ahead and click ;)
 A box should open, and then a window asking you your id and password for accessing your GitHub account.
 Fill in the info.
@@ -292,6 +366,11 @@ You have almost made your first contribution to open science.
 When you are happy with what you have done and do not see how to improve it any further, you can notify **SKY** of your changes and ask for them to be included into the actual website.
 In order to do so, you have to log in to your GitHub account and go to the **SKY** page on YOUR account ``https://github.com/YourGitHubUserName/SKY ``.
 Click on the ``New Pull Request`` button and follow the instructions that you are given.
+
+```{r NewPullButton,echo=FALSE,message=FALSE,error=FALSE,out.width=cst,fig.align='center'}
+include_graphics("./tutoSTCI_files/NewPullButton.png")
+```
+
 If you are uncertain of what to do, look [here](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project).
 Once you have submitted your pull request, I will examine it, we might have some back and forth discussion and then, when everything is OK, I'll accept the pull request.
 Your work will be merged into SKY and will appear online.
