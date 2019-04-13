@@ -211,6 +211,13 @@ $(document).ready(function () {
 
 <p>The book <a href="https://chabefer.github.io/STCI/">Statistical Tools of Causal Inference</a> is an open source resource freely editable by all. You can access the code behind the book on GitHub <a href="https://github.com/chabefer/STCI">here</a>. Do not hesitate to make moficiations and push them to the repo.</p>
 <p>In what follows, “Statistical Tools for Causal Inference” is abbreviated as STCI.</p>
+<p>STCI uses <a href="https://rmarkdown.rstudio.com">RMarkdown</a>, <a href="https://git-scm.com/">Git</a> and the Bookdown Package. Awesome broad tutorials for these two softwares are:</p>
+<ul>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">RMarkdown book</a>, and <a href="https://rmarkdown.rstudio.com/authoring_basics.html">Getting Started with RMarkdown</a>.</li>
+<li><a href="https://git-scm.com/book/en/v2">Git book</a>.</li>
+<li><a href="https://bookdown.org/yihui/bookdown/">Bookdown book</a>.</li>
+</ul>
+<p>You do not need to read these books to contribute to STCI. But as you become more proficient, most of your questions will be answered there.</p>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <div id="overall-software" class="section level3">
@@ -322,7 +329,30 @@ param
 </div>
 <div id="adding-a-new-file" class="section level3">
 <h3>Adding a new file</h3>
-<p>The book is divided in several files. Files correspond to chapters in the book. The first file, where the title, authorship and introduction are located, is called <code>index.Rmd</code>. The following files are numeroted, from <code>01_Something.Rmd</code> to <code>02_Something_Else.Rmd</code>, etc.</p>
+<p>The book is divided in several files. Files correspond to chapters in the book. The first file, where the title, authorship and introduction are located, is called <code>index.Rmd</code>. The following files are numeroted. For the moment, only the first chapter is online, <code>01_FPI.Rmd</code>. Here is the planned roadmap for the book, along with the proposed file names:</p>
+<ul>
+<li>Part 1: The Two Fundamental Problems of Inference
+<ul>
+<li>Chapter 1: The Fundamental Problem of Causal Inference (<code>01_FPI.Rmd</code>)</li>
+<li>Chapter 2: The Fundamental Problem of Statistical Inference (<code>02_FPSI.Rmd</code>)</li>
+</ul></li>
+<li>Part 2: Methods of Causal Inference
+<ul>
+<li>Chapter 3: Randomized Controlled Trials (<code>03_RCT.Rmd</code>)</li>
+<li>Chapter 4: Natural Experiments (<code>04_NE.Rmd</code>)</li>
+<li>Chapter 5: Observational Methods (<code>05_OM.Rmd</code>)</li>
+</ul></li>
+<li>Part 3: Additional Important Topics
+<ul>
+<li>Chapter 6: Power analysis (<code>06_Power.Rmd</code>)</li>
+<li>Chapter 7: Placebo tests (<code>07_Placebo.Rmd</code>)</li>
+<li>Chapter 8: Estimating precision when observations are not i.i.d. (<code>08_Cluster.Rmd</code>)</li>
+<li>Chapter 9: Estimating the bias of observational methods (<code>09_LaLonde.Rmd</code>)</li>
+<li>Chapter 10: Diffusion effects (<code>10_Diffusion.Rmd</code>)</li>
+<li>Chapter 11: Distributional effects (<code>11_Distribution.Rmd</code>)</li>
+<li>Chapter 12: Meta-analysis (<code>12_Meta.Rmd</code>)</li>
+</ul></li>
+</ul>
 <p>Now, you want to create a new file, so it has to be that you want to insert a new chapter into the STCI book. How would you do that? Well, read on.</p>
 <p>Click on the <code>+</code> button on the top left corner of the Rstudio window.</p>
 <p><img src="tutoSTCI_files/NewRmdButton.png" width="30%" style="display: block; margin: auto;" /></p>

@@ -16,6 +16,16 @@ Do not hesitate to make moficiations and push them to the repo.
 
 In what follows, "Statistical Tools for Causal Inference" is abbreviated as STCI.
 
+STCI uses [RMarkdown](https://rmarkdown.rstudio.com), [Git](https://git-scm.com/) and the Bookdown Package.
+Awesome broad tutorials for these two softwares are:
+
+* [RMarkdown book](https://bookdown.org/yihui/rmarkdown/), and [Getting Started  with RMarkdown](https://rmarkdown.rstudio.com/authoring_basics.html).
+* [Git book](https://git-scm.com/book/en/v2).
+* [Bookdown book](https://bookdown.org/yihui/bookdown/).
+
+You do not need to read these books to contribute to STCI.
+But as you become more proficient, most of your questions will be answered there.
+
 ## Installation
 
 ### Overall software
@@ -203,7 +213,25 @@ But for now, you can locate each part of the R code and make changes to the stat
 The book is divided in several files.
 Files correspond to chapters in the book.
 The first file, where the title, authorship and introduction are located, is called ``index.Rmd``.
-The following files are numeroted, from ``01_Something.Rmd`` to ``02_Something_Else.Rmd``, etc.
+The following files are numeroted.
+For the moment, only the first chapter is online, ``01_FPI.Rmd``.
+Here is the planned roadmap for the book, along with the proposed file names:
+
+* Part 1: The Two Fundamental Problems of Inference
+    + Chapter 1: The Fundamental Problem of Causal Inference (``01_FPI.Rmd``)
+    + Chapter 2: The Fundamental Problem of Statistical Inference (``02_FPSI.Rmd``)
+* Part 2: Methods of Causal Inference
+    + Chapter 3: Randomized Controlled Trials (``03_RCT.Rmd``)
+    + Chapter 4: Natural Experiments (``04_NE.Rmd``)
+    + Chapter 5: Observational Methods (``05_OM.Rmd``)
+* Part 3: Additional Important Topics
+    + Chapter 6: Power analysis (``06_Power.Rmd``)
+    + Chapter 7: Placebo tests (``07_Placebo.Rmd``)
+    + Chapter 8: Estimating precision when observations are not i.i.d. (``08_Cluster.Rmd``)
+    + Chapter 9: Estimating the bias of observational methods (``09_LaLonde.Rmd``)
+    + Chapter 10: Diffusion effects (``10_Diffusion.Rmd``)
+    + Chapter 11: Distributional effects (``11_Distribution.Rmd``)
+    + Chapter 12: Meta-analysis (``12_Meta.Rmd``)
 
 Now, you want to create a new file, so it has to be that you want to insert a new chapter into the STCI book.
 How would you do that?
