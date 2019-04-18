@@ -225,7 +225,7 @@ Additionality of Forest Conservation Program (in percent of forest cover saved p
 <h2>How the result is obtained</h2>
 <div id="individual-studies" class="section level3">
 <h3>Individual studies</h3>
-<p>Their results can be found <a href="https://docs.google.com/spreadsheets/d/1VWzAgaV3fRfk3mJDzt4y3fxInM5lWrygxebocAmdxtQ/edit?usp=sharing">here</a>. Below is the code sending the results of the individual studies to the SKY database (once each study will have its own page, this will not be needed anymore):</p>
+<p>The extensive search can be found <a href="https://docs.google.com/spreadsheets/d/1gnJ_rneBShscuv5XfeVlm6fQDRu9PddSscYBRGlxLkI/edit?usp=sharing">here</a>. Their results can be found <a href="https://docs.google.com/spreadsheets/d/1VWzAgaV3fRfk3mJDzt4y3fxInM5lWrygxebocAmdxtQ/edit?usp=sharing">here</a>. Below is the code sending the results of the individual studies to the SKY database (once each study will have its own page, this will not be needed anymore):</p>
 <pre class="r"><code># dowlnloading and sending table with individual studies
 data.FCP &lt;- gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1VWzAgaV3fRfk3mJDzt4y3fxInM5lWrygxebocAmdxtQ/edit?usp=sharing&quot;)
 colnames(data.FCP) &lt;- c(&quot;paper.id&quot;,&quot;authors&quot;,&quot;year&quot;,&quot;add&quot;,&quot;se.add&quot;)
