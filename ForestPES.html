@@ -210,16 +210,48 @@ $(document).ready(function () {
 
 
 <p>Cutting down standing forest sends GHGs in the atmosphere, especially when the forest is replaced by crops. As a consequence, programs that pay landowners not to cut their standing forest might be an effective way to combat climate change, if they succeed in maintaining enough standing forest for a reasonbable amount of money.</p>
-<p>This article preregisters a meta-analysis aiming at gathering published estimates of the impact of Forest Conservation Programs on the amounf of standing forest.</p>
-<p>We have already conducted an extensive search of the published databases, to be described.</p>
-<p>We have identified around 12 publications providing a causal estimate of the additional effect of a forest conservation program. We have converted all estimates in percentage points of saved forest area per year. We are going to conduct first a meta-analysis of the additionality parameter. We have collected data on program costs, so that we are able to form cost-effectiveness estimates. We are also going to compute cost-benefit estimates. Key for these estimates is the benefit estimates. They depend on the durability of the program effects. We plan to follow Jayachandran et al (2018) middle scenario for durability of the program impacts.</p>
-<p>Each estimate will be conducted using both fixed and randomo effects models.</p>
-<p>We plan to control for:</p>
-<ul>
-<li>Whether the estimate is from an RCT, an observational method or a natural experiment. If impossible to separate, we plan to regroup the last two components.</li>
-<li>Whether the estimate comes from developed or developing countries, and, if feasible, South America, Africa or Asia.</li>
-<li>Whether payments were based on actual measurements, or whether there were only randomized controls, and whether the controls where in person, by satelllite or by aerial photo. It is not sure that we can build the variable for these last categories.</li>
-</ul>
+<p>In this section we report on the results of several studies that have estimated the additionality of Forest Conservation Programs in developing countries. Below is the estimated additionality of these programs:</p>
+<div class="figure" style="text-align: center">
+<img src="ForestPES_files/figure-html/add.FCP-1.png" alt="Additionality of Forest Conservation Program (in percent of forest cover saved per year)" width="480" />
+<p class="caption">
+Additionality of Forest Conservation Program (in percent of forest cover saved per year)
+</p>
+</div>
+<p>The overall estimate is of 0.2 <span class="math inline">\(\pm\)</span> 0.01 additional percent of forest cover saved per year.</p>
+<div id="caveats-and-open-questions" class="section level2">
+<h2>Caveats and open questions</h2>
+</div>
+<div id="how-the-result-is-obtained" class="section level2">
+<h2>How the result is obtained</h2>
+<div id="individual-studies" class="section level3">
+<h3>Individual studies</h3>
+<p>Their results can be found <a href="https://docs.google.com/spreadsheets/d/1VWzAgaV3fRfk3mJDzt4y3fxInM5lWrygxebocAmdxtQ/edit?usp=sharing">here</a>. Below is the code sending the results of the individual studies to the SKY database (once each study will have its own page, this will not be needed anymore):</p>
+<pre class="r"><code># dowlnloading and sending table with individual studies
+data.FCP &lt;- gsheet2tbl(&quot;https://docs.google.com/spreadsheets/d/1VWzAgaV3fRfk3mJDzt4y3fxInM5lWrygxebocAmdxtQ/edit?usp=sharing&quot;)
+colnames(data.FCP) &lt;- c(&quot;paper.id&quot;,&quot;authors&quot;,&quot;year&quot;,&quot;add&quot;,&quot;se.add&quot;)
+data.FCP &lt;- as.data.frame(data.FCP)
+dbWriteTable(SKY.db,&#39;FCP&#39;,data.FCP,overwrite=TRUE)</code></pre>
+</div>
+<div id="meta-analysis-of-the-individual-studies" class="section level3">
+<h3>Meta-analysis of the individual studies</h3>
+<p>The meta-analysis is conducted using the fixed-effects method, assuming that the cost-effectiveness of Forest Conservation Programs is constant over time. This might be an unattractive asumption, since probably changes in prices might trigger changes in abatement costs. More estimates are needed in order to check whether this assumption is unlikely to hold. All the current evidence points to homogeneity of abatement costs over time, with the limited precision that we have.</p>
+<pre class="r"><code>data.FCP$var.add &lt;- data.FCP$se.add^2
+meta.FCP.FE &lt;- rma(yi = data.FCP$add,vi=data.FCP$var.add,method=&quot;FE&quot;)
+summary(meta.FCP.FE)</code></pre>
+<pre class="r"><code># sending table with meta-analysis coef
+data.meta.CC &lt;- data.frame(program=&#39;Forest Conservation Programs&#39;,
+                          coef = coef(meta.FCP.FE),
+                          se.coef=summary(meta.FCP.FE)$se,
+                          stringsAsFactors = F)
+dbUpdateResults(con=SKY.db,table=&#39;Meta_CC&#39;,data=data.meta.CC,where=c(&#39;program&#39;),update=c(&#39;coef&#39;,&#39;se.coef&#39;))</code></pre>
+<p><img src="ForestPES_files/figure-html/FE.forest.plot-1.png" width="672" /></p>
+</div>
+<div id="analysis-of-publication-bias" class="section level3">
+<h3>Analysis of Publication Bias</h3>
+<pre class="r"><code>funnel(meta.FCP.FE)</code></pre>
+<p><img src="ForestPES_files/figure-html/FE.funnel.plot-1.png" width="672" /></p>
+</div>
+</div>
 
 
 
