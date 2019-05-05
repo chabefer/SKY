@@ -1,6 +1,5 @@
 ---
 title: "Are Forest Conservation Programs a Cost-Effective Way to Fight Climate Change?"
-output: pdf_document
 ---
 
 ```{r libraries,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
