@@ -11,7 +11,7 @@
 
 
 
-<title>Are Mindfulness-based Interventions Effective?</title>
+<title>How to Test the Validity of a Matching Estimator?</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -305,15 +305,30 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Are Mindfulness-based Interventions Effective?</h1>
+<h1 class="title toc-ignore">How to Test the Validity of a Matching Estimator?</h1>
 
 </div>
 
 
-<p><em>This article is a stub.</em> <em>Do not hesitate to substantiate.</em></p>
-<p>Mindfulness-based interventions use meditation to improve the focus and decrease the stress of students.</p>
-<p>The most recent (to our knowledge) meta-analysis of the effect of Mindfulness-based interventions on students can be found <a href="https://doi.org/10.3389/fpsyg.2014.00603">here</a>.</p>
-<p>No tests for publication bias is reported. The dataset is online and could be transported to SKY.</p>
+<p><strong>This article advises that the validity of Matching be tested by looking at the differences in outcomes between participants and matched non participants on outcomes measured before the treatment and not included in the set of matching variables, using the same set of matching variables as the ones used for estimating the main effect, including the eventual outcomes measured before treatment.</strong></p>
+<p><strong>The practice of testing the validity of Matching by applying the Matching estimator on late pre-treatment outcomes after matching on earlier pre-treatment outcomes is wrong and will not deliver correct results.</strong></p>
+<p>When using non experimental tools for causal inference, it is customary to provide placebo tests in order to support the validity of the method used. A placebo test implements the method in a case where the effect of the treatment is known a priori. A case in point is when the treatment has not been implemented yet, and the effect of the treatment is obviously zero, at least in the absence of anticipation effects. We should see no effect on outcomes when applying the causal inference method before the treatment occurs. If we do see an effect, it just signals that the method is biased.</p>
+<div id="notation" class="section level2">
+<h2>Notation</h2>
+<p>Time runs from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=K\)</span>. Treatment participation occurs at <span class="math inline">\(t=k\)</span>. <span class="math inline">\(D_{i,t}\)</span> denotes the participation indicator, with <span class="math inline">\(D_{i,t}=1\)</span> when agent <span class="math inline">\(i\)</span> participates in the treatment and <span class="math inline">\(0\)</span> when she does not. By convention, <span class="math inline">\(D_{i,t}=0\)</span>, <span class="math inline">\(\forall t&lt;k\)</span>, so that no one benefits from the treatment before dates <span class="math inline">\(k\)</span>. <span class="math inline">\(Y^1_{i,t}\)</span> denotes the potential outcome in the presence of the treatment. <span class="math inline">\(Y^0_{i,t}\)</span> denotes the potential outcome in the absence of the treatment and <span class="math inline">\(Y_{i,t}\)</span> the observed outcomes. Since no one benefits from the treatment before dates <span class="math inline">\(k\)</span>, <span class="math inline">\(Y_{i,t}=Y^0_{i,t}\)</span>, <span class="math inline">\(\forall t&lt;k\)</span>. <span class="math inline">\(\Delta^Y_{i,t}=Y^1_{i,t}-Y^0_{i,t}\)</span> denotes the individual level treatment effect. <span class="math inline">\(\Delta^Y_{TT,t}=\mathbf{E}\left[Y^1_{i,t}-Y^0_{i,t}|D_{i,k}=1\right]\)</span> denotes the average effect of the treatment on the treated. <span class="math inline">\(M_{t,t&#39;}=\mathbf{E}\left[Y_{i,t}-\mathbf{E}\left[Y_{i,t}|D_{i,k}=0,Y_{i,t&#39;}\right]|D_{i,k}=1\right]\)</span> is the Matching estimator for outcomes at period <span class="math inline">\(t\)</span> conditioning on outcomes at period <span class="math inline">\(t&#39;\)</span>. <span class="math inline">\(B(M_{t,t&#39;})=M_{t,t&#39;}-\Delta^Y_{TT,t}\)</span> denotes the bias of the Matching estimator.</p>
+</div>
+<div id="the-correct-way-to-test-for-the-validity-of-matching" class="section level2">
+<h2>The correct way to test for the validity of Matching</h2>
+<p>Let’s assume, for the sake of the example, that we want to implement the matching estimator by conditioning only <span class="math inline">\(Y_{i,k-1}\)</span>. Then, the correct test for the vaidity of matching consists in estimating the effect of the treatment before this period, with the same conditioning variable. For example, estimating <span class="math inline">\(M_{k-2,k-1}\)</span>, the Matching estimate for the effect of the treatment on outcomes measured at period <span class="math inline">\(k-2\)</span>, conditioning on outcomes measured at period <span class="math inline">\(k\)</span>.</p>
+<p>If correct, this test should have that:</p>
+<ul>
+<li>When the Matching estimator is correct, the test should find a zero effect. Stated otherwise, whenever <span class="math inline">\(B(M_{t,k-1})=0\)</span>, then <span class="math inline">\(M_{k-2,k-1}=0\)</span>.</li>
+<li>When the Matching estimator is incorrect, the test should find a non-zero effect. Stated otherwise, whenever <span class="math inline">\(B(M_{t,k-1})\neq0\)</span>, then <span class="math inline">\(M_{k-2,k-1}\neq0\)</span>.</li>
+</ul>
+</div>
+<div id="other-approaches-and-their-flaws" class="section level2">
+<h2>Other approaches and their flaws</h2>
+</div>
 
 
 

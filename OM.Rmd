@@ -1,0 +1,13 @@
+---
+title: "Observational Methods: Methodological Guidelines"
+---
+
+In this section, you can find answers to simple questions on how to implement Observational Methods of causal inference:
+
+1. [How to test for the validity of Matching?](MatchValidTest.html)
+2. Should we match on the propensity score or not?
+3. How to select the bandwidth?
+4. Can I use the bootstrap to infer precision?
+5. How does Machine Learning help with selecting covariates?
+6. What is the bias of observational methods?
+7. What to do when the parallel trend assumption does not hold?

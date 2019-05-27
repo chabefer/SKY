@@ -1,0 +1,44 @@
+---
+title: "How to Test the Validity of a Matching Estimator?"
+---
+
+**This article advises that the validity of Matching be tested by looking at the differences in outcomes between participants and matched non participants on outcomes measured before the treatment and not included in the set of matching variables, using the same set of matching variables as the ones used for estimating the main effect, including the eventual outcomes measured before treatment.**
+
+**The practice of testing the validity of Matching by applying the Matching estimator on late pre-treatment outcomes after matching on earlier pre-treatment outcomes is wrong and will not deliver correct results.**
+
+When using non experimental tools for causal inference, it is customary to provide placebo tests in order to support the validity of the method used.
+A placebo test implements the method in a case where the effect of the treatment is known a priori.
+A case in point is when the treatment has not been implemented yet, and the effect of the treatment is obviously zero, at least in the absence of anticipation effects.
+We should see no effect on outcomes when applying the causal inference method before the treatment occurs.
+If we do see an effect, it just signals that the method is biased.
+
+## Notation
+
+Time runs from $t=0$ to $t=K$.
+Treatment participation occurs at $t=k$.
+$D_{i,t}$ denotes the participation indicator, with $D_{i,t}=1$ when agent $i$ participates in the treatment and $0$ when she does not.
+By convention, $D_{i,t}=0$, $\forall t<k$, so that no one benefits from the treatment before dates $k$.
+$Y^1_{i,t}$ denotes the potential outcome in the presence of the treatment.
+$Y^0_{i,t}$ denotes the potential outcome in the absence of the treatment and $Y_{i,t}$ the observed outcomes.
+Since no one benefits from the treatment before dates $k$, $Y_{i,t}=Y^0_{i,t}$, $\forall t<k$.
+$\Delta^Y_{i,t}=Y^1_{i,t}-Y^0_{i,t}$ denotes the individual level treatment effect.
+$\Delta^Y_{TT,t}=\mathbf{E}\left[Y^1_{i,t}-Y^0_{i,t}|D_{i,k}=1\right]$ denotes the average effect of the treatment on the treated.
+$M_{t,t'}=\mathbf{E}\left[Y_{i,t}-\mathbf{E}\left[Y_{i,t}|D_{i,k}=0,Y_{i,t'}\right]|D_{i,k}=1\right]$ is the Matching estimator for outcomes at period $t$ conditioning on outcomes at period $t'$. 
+$B(M_{t,t'})=M_{t,t'}-\Delta^Y_{TT,t}$ denotes the bias of the Matching estimator.
+
+## The correct way to test for the validity of Matching
+
+Let's assume, for the sake of the example, that we want to implement the matching estimator by conditioning only $Y_{i,k-1}$.
+Then, the correct test for the vaidity of matching consists in estimating the effect of the treatment before this period, with the same conditioning variable.
+For example, estimating $M_{k-2,k-1}$, the Matching estimate for the effect of the treatment on outcomes measured at period $k-2$, conditioning on outcomes measured at period $k$. 
+
+If correct, this test should have that:
+
+* When the Matching estimator is correct, the test should find a zero effect.
+Stated otherwise, whenever $B(M_{t,k-1})=0$, then $M_{k-2,k-1}=0$.
+* When the Matching estimator is incorrect, the test should find a non-zero effect.
+Stated otherwise, whenever $B(M_{t,k-1})\neq0$, then $M_{k-2,k-1}\neq0$.
+
+
+
+## Other approaches and their flaws

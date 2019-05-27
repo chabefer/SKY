@@ -1,0 +1,6 @@
+---
+title: "Difference In Differences"
+---
+
+1. Should I condition on pre-treatment outcomes when using DID?
+2. Whould I condition on covariates when using DID?
