@@ -5,5 +5,5 @@ title: "Meta-Analysis: Frontier Research"
 Meta-analysis is a key tool for aggregating scientific evidence.
 This page of SKY aggregates recent methodological research on meta-analysis.
 
-* Testing and correcting for publication bias
+* [Testing and correcting for publication bias](MetaCorrect.html)
 * [The aggregate consequences of publishing only statistically significant treatment effects](Pvalues.html)

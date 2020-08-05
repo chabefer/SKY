@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -69,9 +69,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -85,7 +83,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -190,8 +187,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -236,6 +231,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -248,20 +244,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -310,7 +303,7 @@ $(document).ready(function () {
 </div>
 
 
-<p><strong>This article is in process</strong> <strong>You can fork it and propose new writing and simulations by following the steps <a href="https://chabefer.github.io/SKY/tutoSKY.html">here</a></strong> <strong>You can leave a comment on what you think should be addressed <a href="https://economics.stackexchange.com/questions/29648/the-aggregate-consequences-of-publishing-only-statistically-significant-treatmen">here</a></strong></p>
+<p><strong>This article is in process.</strong> <strong>You can fork it and propose new writing and simulations by following the steps <a href="https://chabefer.github.io/SKY/tutoSKY.html">here</a>.</strong> <strong>You can leave a comment on what you think should be addressed <a href="https://economics.stackexchange.com/questions/29648/the-aggregate-consequences-of-publishing-only-statistically-significant-treatmen">here</a>.</strong></p>
 <p>There is ample debate recently around the use of p-values and test statistics in science. On the one hand, some argue that only statistically significant results are interesting while others suggest that p-values bias scientific results and that every result should be published. In this paper, I want to put some flesh into this debate by comparing the consequences of using test statistics and p-values to filter scientific results with the practice of publishing all results for a decision-maker faced with the problem of deciding which projects to scale up.</p>
 <div id="the-problem" class="section level1">
 <h1>The problem</h1>
@@ -361,9 +354,9 @@ colnames(samples) &lt;- c(&#39;theta.jp&#39;,&#39;p&#39;,&#39;theta.p&#39;,&#39;
 <p>Before looking at the results, let’s first compute the two decisions rules: the average outcome of all estimates for each program and the average of the significant treatment effects (the ones with a t-stat larger than 1.96, according to the usual aproach):</p>
 <pre class="r"><code>means.samples &lt;- samples %&gt;%
                     group_by(p) %&gt;%
-                    summarise(theta.p.hat = mean(theta.jp))
-
-samples &lt;- merge(samples,means.samples,by=&#39;p&#39;)
+                    summarise(theta.p.hat = mean(theta.jp))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>samples &lt;- merge(samples,means.samples,by=&#39;p&#39;)
 
 samples &lt;- samples %&gt;%
                     mutate(test = theta.jp/sigma) %&gt;%
@@ -373,9 +366,9 @@ samples &lt;- samples %&gt;%
 means.samples.s &lt;- samples %&gt;%
                     group_by(p) %&gt;%
                     filter(theta.jp.s&gt;0) %&gt;%
-                    summarise(theta.p.hat.s = mean(theta.jp.s))
-
-samples &lt;- merge(samples,means.samples.s,by=&#39;p&#39;,all.x = TRUE)
+                    summarise(theta.p.hat.s = mean(theta.jp.s))</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre class="r"><code>samples &lt;- merge(samples,means.samples.s,by=&#39;p&#39;,all.x = TRUE)
 samples[is.na(samples)] &lt;- 0</code></pre>
 <p>Let’s see what it looks like for the first three programs:</p>
 <pre class="r"><code>ggplot(filter(samples,p&lt;=3), aes(x=as.factor(id), y=theta.jp,fill=as.factor(p))) +
@@ -417,6 +410,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

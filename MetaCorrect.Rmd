@@ -1,0 +1,23 @@
+---
+title: "How Effective are Methods of Correction for Publication Bias?"
+output: html_document
+---
+
+[Publication bias](https://chabefer.github.io/STCI/sec-meta.html#publication-bias-and-site-selection-bias) generates [adverse aggregate outcomes for science](Pvalues.html).
+There are several attempts at solving the issue of publication bias, noth before (ex-ante) and after (ex-post) publication of the results.
+Ex ante, one solution to fight publication bias is to commit to a pre-analysis plan before seeing the data and to commit to publish the results of every analysis whatever their results, a solution generally called pre-registration.
+Ex-post, [several methods](https://chabefer.github.io/STCI/sec-meta.html#detection-of-and-correction-for-publication-bias) have been proposed to try to recover the true effect from data plagued by publication bias.
+A key question is whether these methods are able to do what they were designed for, namely to correct for publication bias. 
+In [an innovative and insightful paper](https://www.gwern.net/docs/statistics/bias/2019-kvarven.pdf) [published by Nature Human Behavior](https://www.nature.com/articles/s41562-019-0787-z), Kvarven, Stromland and Johannesson have proposed a deceptively simple but extremely efficient way to test for the validity of ex-post methods of correction for publication bias.
+Their idea is simply to compare what is obtained when implementing correction ex-post to the estimate obtained by using ex-ante methods.
+In order to implement their approach, they gather data from 11 meta-analysis of published results in psychology and compare them with the results of pre-registered replications of the same effects.
+The interpretation of the results is [subject to debate](https://economistjourney.blogspot.com/2020/01/how-large-is-publication-bias-and-can.html), but there seems to be a good grounds for concluding that, of the three methods compared, two fail to decrease bias in any way (Trim-and-Fill and selection models), while one is able to reach unbiasedness and to significantly decrease prediction error (FAT-PET-PEESE).
+In this article, I reproduce their results and extend them to methods of correction for publication bias that did not consider (namely the most recent version of FAT-PET-PEESE and p-curving). 
+
+# Performance of alternative methods of correction for publication bias
+
+
+# Analysis of each separate dataset
+
+
+

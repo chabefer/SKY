@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -69,9 +69,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -85,7 +83,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -190,8 +187,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -236,6 +231,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -248,20 +244,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -314,7 +307,7 @@ $(document).ready(function () {
 <p>In its most basic form, the FPCI states that our causal parameter of interest (<span class="math inline">\(TT\)</span>, short for Treatment on the Treated) is fundamentally unobservable, even when the sample size is infinite. The main reason for that is that one component of the <span class="math inline">\(TT\)</span>, the outcome of the treated had they not received the program, remains unobservable. We call this outcome a counterfactual outcome. The FPCI is a very dispiriting result that is actually the basis for all of the econometric methods we are going to see in this class. All of these methods try to find ways to estimate the counterfactual by using observable quantities that hopefully approximate it as well as possible. Most people, including us but also policymakers, generally rely on intuitive quantities in order to generate the counterfactual (individuals without the program or individuals before the program was implemented). Unfortunately, these approximations are generally very crude, and the resulting estimators of <span class="math inline">\(TT\)</span> are generally biased, sometimes severely.</p>
 <p>The Fundamental Problem of Statistical Inference (FPSI) states that, even if we have an estimator <span class="math inline">\(E\)</span> that identifies <span class="math inline">\(TT\)</span> in the population, we cannot observe <span class="math inline">\(E\)</span> because we only have access to a finite sample of the population. The only thing that we can form from the sample is a sample equivalent <span class="math inline">\(\hat{E}\)</span> to the population quantity <span class="math inline">\(E\)</span>, and <span class="math inline">\(\hat{E}\neq E\)</span>. Why is <span class="math inline">\(\hat{E}\neq E\)</span>? Because a finite sample is never perfectly representative of the population. What can we do to deal with the FPSI? I am going to argue that there are mainly two things that we might want to do: estimating the extent of sampling noise and decreasing sampling noise.</p>
 <p>In order to state the FPCI, we are going to describe the basic language to encode causality set up by Rubin, and named <a href="RCM.html">Rubin Causal Model (RCM)</a>. RCM being about partly observed random variables, it is hard to make these notions concrete with real data. That’s why we are going to use simulations from a simple model in order to make it clear how these variables are generated. The second virtue of this model is that it is going to make it clear the source of selection into the treatment. This is going to be useful when understanding biases of intuitive comparisons, but also to discuss the methods of causal inference. A third virtue of this approach is that it makes clear the connexion between the treatment effects literature and models. Finally, a fourth reason that it is useful is that it is going to give us a source of sampling variation that we are going to use to visualize and explore the properties of our estimators.</p>
-<p>I use <span class="math inline">\(X_i\)</span> to denote random variable <span class="math inline">\(X\)</span> all along the notes. I assume that we have access to a sample of <span class="math inline">\(N\)</span> observations indexed by <span class="math inline">\(i\in\left\{1,\dots,N\right\}\)</span>. ‘’<span class="math inline">\(i\)</span>’’ will denote the basic sampling units when we are in a sample, and a basic element of the probability space when we are in populations. Introducing rigorous measure-theoretic notations for the population is feasible but is not necessary for comprehension.</p>
+<p>I use <span class="math inline">\(X_i\)</span> to denote random variable <span class="math inline">\(X\)</span> all along the notes. I assume that we have access to a sample of <span class="math inline">\(N\)</span> observations indexed by <span class="math inline">\(i\in\left\{1,\dots,N\right\}\)</span>. ’‘<span class="math inline">\(i\)</span>’’ will denote the basic sampling units when we are in a sample, and a basic element of the probability space when we are in populations. Introducing rigorous measure-theoretic notations for the population is feasible but is not necessary for comprehension.</p>
 <p>When the sample size is infinite, we say that we have a population. A population is a very useful fiction for two reasons. First, in a population, there is no sampling noise: we observe an infinite amount of observations, and our estimators are infinitely precise. This is useful to study phenomena independently of sampling noise. For example, it is in general easier to prove that an estimator is equal to <span class="math inline">\(TT\)</span> under some conditions in the population. Second, we are most of the time much more interested in estimating the values of parameters in the population rather than in the sample. The population parameter, independent of sampling noise, gives a much better idea of the causal parameter for the population of interest than the parameter in the sample. In general, the estimator for both quantities will be the same, but the estimators for the effetc of sampling noise on these estimators will differ. Sampling noise for the population parameter will generally be larger, since it is affected by another source of variability (sample choice).</p>
 <p>Here is the content of this section:</p>
 <ol style="list-style-type: decimal">
@@ -343,6 +336,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -8,9 +8,9 @@ library(dplyr)
 cst <- "60%"
 ```
 
-**This article is in process**
-**You can fork it and propose new writing and simulations by following the steps [here](https://chabefer.github.io/SKY/tutoSKY.html)**
-**You can leave a comment on what you think should be addressed [here](https://economics.stackexchange.com/questions/29648/the-aggregate-consequences-of-publishing-only-statistically-significant-treatmen)**
+**This article is in process.**
+**You can fork it and propose new writing and simulations by following the steps [here](https://chabefer.github.io/SKY/tutoSKY.html).**
+**You can leave a comment on what you think should be addressed [here](https://economics.stackexchange.com/questions/29648/the-aggregate-consequences-of-publishing-only-statistically-significant-treatmen).**
 
 There is ample debate recently around the use of p-values and test statistics in science.
 On the one hand, some argue that only statistically significant results are interesting while others suggest that p-values bias scientific results and that every result should be published.

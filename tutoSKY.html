@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -69,9 +69,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -85,7 +83,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -190,8 +187,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -236,6 +231,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -248,20 +244,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -447,7 +440,7 @@ SCC <- 24
 <h3>Adding new data</h3>
 <p>There are several ways to bring data to SKY. All of them are illustrated in the <code>GrasslandPES.Rmd</code> file.</p>
 <p>The first way is simply to link to a GoogleSheet where estimates are stored or papers are listed. In order to do so, hit the <code>Share</code> button on the GoogleSheet page, choose <code>Anyone with the link can edit</code> and copy/paste the link to SKY using the Rmarkdown command <code>[text](link)</code>. See the example just above the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
-<p>The second way is to download the data from the GoogleSheet into SKY. In order to do so, you have to use the <code>gsheet</code> package, by calling it into an R code chunk with <code>library(gsheet)</code>. I generally put all calls to packages in the first R code chunk of the RMarkdown document, that I generally call <code>libraries</code>, as I did in the <code>GrasslandPES.Rmd</code> example file. Then you simply have to call the data from GoogleSheet using the <code>gsheet2tbl</code> command: <code>data &lt;- gsheet2tbl(&quot;YourGoogleSheetUrl&quot;)</code>. See the example in the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
+<p>The second way is to download the data from the GoogleSheet into SKY. In order to do so, you have to use the <code>gsheet</code> package, by calling it into an R code chunk with <code>library(gsheet)</code>. I generally put all calls to packages in the first R code chunk of the RMarkdown document, that I generally call <code>libraries</code>, as I did in the <code>GrasslandPES.Rmd</code> example file. Then you simply have to call the data from GoogleSheet using the <code>gsheet2tbl</code> command: <code>data &lt;- gsheet2tbl("YourGoogleSheetUrl")</code>. See the example in the code chunk <code>sendingGCP</code> in the <code>GrasslandPES.Rmd</code> file.</p>
 <p>The third way is to download data from your computer. <a href="https://www.statmethods.net/input/importingdata.html">Here</a> is a quick tutorial on how to do that for different file formats. In order to make the data really available to the community though, you have to either put it into a GoogleSheet or send it to the MySQL repo (see below).</p>
 <p>The fourth way is to send the data directly to the SKY MySQL repo. In order to do so, you need to download the <code>RMySQL</code> package by adding <code>library(RMySQL)</code> to the <code>libraries</code> code chunk. Then, you need to connect to the <strong>SKY</strong> MySQL database. For this, you have to include the following code chunk in your page (I suggest to place it right after the <code>library</code> chunk):</p>
 <pre><code>```{r source,echo=FALSE,results=FALSE,warning=FALSE,error=FALSE,message=FALSE}
@@ -521,6 +514,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
