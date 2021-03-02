@@ -309,6 +309,510 @@ $(document).ready(function () {
 </div>
 <div id="analysis-of-each-separate-dataset" class="section level1">
 <h1>Analysis of each separate dataset</h1>
+<p>In this section, we look at each dataset separately. We start by downloading the aggregated dataset where a lot of information is stored already.</p>
+<pre class="r"><code># download dataset from SQL server
+Aggregate &lt;- dbReadTable(Kvarven.db,&quot;Aggregate&quot;)</code></pre>
+<div id="belle-dataset" class="section level2">
+<h2>Belle dataset</h2>
+<pre class="r"><code># download dataset from SQL server
+Belle &lt;- dbReadTable(Kvarven.db,&quot;Belle&quot;)
+# get the comment associated with the study, so that we know what it is about
+Belle.description &lt;- dbGetQuery(Kvarven.db,&quot;
+    SELECT table_comment 
+    FROM INFORMATION_SCHEMA.TABLES 
+    WHERE table_schema=&#39;Kvarven&#39; 
+        AND table_name=&#39;Belle&#39;;&quot;)
+# get the original study, the meta-analysis and the replication
+Belle.papers &lt;- Aggregate %&gt;%
+                    filter(str_detect(metaanalysis,&quot;Belle&quot;)==TRUE) %&gt;%
+                    select(original,replication,metaanalysis)</code></pre>
+<p>The Belle dataset is a Dataset for the meta-analysis of self-concept maintenance originally studied by Mazar et al. (2008). The original study is by Mazar et al. (2008). The meta-analysis is by Belle &amp; Cantarelli (2017). The replication is by NA. The fact that the identity of the replicator is unknown was already the case in the original Kvarven study.</p>
+<div id="fat-pet-peese" class="section level3">
+<h3>FAT-PET-PEESE</h3>
+<p>In this section, we are looking at how the Belle dataset behaves with the <a href="https://chabefer.github.io/STCI/sec-meta.html#detection-of-and-correction-for-publication-bias">FAT-PET-PEESE method of Stanley and Docouliagos</a>. There are three ways that we can FAT-PET-PEESE: using a Fixed Effects (FE) meta-analysis, a Random Effects (RE) meta-analysis and Weighted Least Squares (WLS). Recently, <a href="https://doi.org/10.1002/jrsm.1211">Stanley and Docouliago</a> have argued that the WLS approach was the best one. WLS obtains the same estimated effect size as FE, but it computes its estimate of the standard error by taking into account inter-study variability, as RE does.</p>
+<pre class="r"><code># weights for WLS estimator
+Belle &lt;- Belle %&gt;% 
+          mutate(weightsWLS=(1/v)/(sum(1/v)))
+# WLS Meta estimator
+Belle.WLS.Meta &lt;- lm(d~1,weights = weightsWLS,data=Belle)
+# WLS FAT PET estimator
+Belle.WLS.FAT.PET &lt;- lm(d~sed,weights = weightsWLS,data=Belle)
+# WLS PEESE estimator
+Belle.WLS.PEESE &lt;- lm(d~v,weights = weightsWLS,data=Belle)
+# FE Meta Estimator
+Belle.FE.Meta &lt;- rma(yi=d,vi=v,data=Belle,method=&quot;FE&quot;)
+# FE FAT PET estimator
+Belle.FE.FAT.PET &lt;- rma(d~sed,vi=v,data=Belle,method=&quot;FE&quot;)
+# FE PEESE estimator
+Belle.FE.PEESE &lt;- rma(d~v,vi=v,data=Belle,method=&quot;FE&quot;)
+# RE Meta Estimator
+Belle.RE.Meta &lt;- rma(yi=d,vi=v,data=Belle,method=&quot;REML&quot;)
+# RE FAT PET estimator
+Belle.RE.FAT.PET &lt;- rma(d~sed,vi=v,data=Belle,method=&quot;REML&quot;)
+# RE PEESE estimator
+Belle.RE.PEESE &lt;- rma(d~v,vi=v,data=Belle,method=&quot;REML&quot;)
+
+# plot of results
+colors &lt;- c(&quot;MetaAnalysisOriginal&quot;=&quot;red&quot;,&quot;Replication&quot;=&quot;blue&quot;,&quot;MetaAnalysisWLS&quot;=&quot;green&quot;,&quot;MetaAnalysisRE&quot;=&quot;purple&quot;)
+lines &lt;- c(&quot;FATPETWLS&quot;=&quot;solid&quot;,&quot;PEESEWLS&quot;=&quot;dashed&quot;,&quot;FATPETRE&quot;=&quot;dotted&quot;,&quot;PEESERE&quot;=&quot;dotdash&quot;)
+
+ggplot(Belle,aes(x=sed,y=d))+
+  geom_point()+
+  xlim(0,0.5)+
+  ylim(-0.1,1)+
+  theme_bw()+
+  xlab(&quot;Standard error&quot;)+
+  ylab(&quot;Effect size&quot;)+
+  geom_hline(aes(yintercept=Aggregate %&gt;%
+                    filter(str_detect(metaanalysis,&quot;Belle&quot;)==TRUE) %&gt;%
+                    select(meta_s) %&gt;% 
+                    as.numeric(),colour=&quot;MetaAnalysisOriginal&quot;))+
+  geom_hline(aes(yintercept=Aggregate %&gt;%
+                    filter(str_detect(metaanalysis,&quot;Belle&quot;)==TRUE) %&gt;%
+                    select(replication_s) %&gt;% 
+                    as.numeric(),colour=&quot;Replication&quot;)) +
+  geom_hline(aes(yintercept=coef(Belle.WLS.Meta)[[1]],colour=&quot;MetaAnalysisWLS&quot;))+
+  geom_hline(aes(yintercept=coef(Belle.RE.Meta)[[1]],colour=&quot;MetaAnalysisRE&quot;))+
+  stat_function(fun=function(x){coef(Belle.WLS.FAT.PET)[1] + coef(Belle.WLS.FAT.PET)[2]*x},aes(linetype=&quot;FATPETWLS&quot;),color=&quot;black&quot;)+
+  stat_function(fun=function(x){coef(Belle.WLS.PEESE)[1] + coef(Belle.WLS.PEESE)[2]*x^2},aes(linetype=&quot;PEESEWLS&quot;),color=&quot;black&quot;)+
+  stat_function(fun=function(x){coef(Belle.RE.FAT.PET)[1] + coef(Belle.RE.FAT.PET)[2]*x},aes(linetype=&quot;FATPETRE&quot;),color=&quot;black&quot;)+
+  stat_function(fun=function(x){coef(Belle.RE.PEESE)[1] + coef(Belle.RE.PEESE)[2]*x^2},aes(linetype=&quot;PEESERE&quot;),color=&quot;black&quot;)+
+  scale_colour_manual(&quot;Estimate&quot;,values = colors)+
+  scale_linetype_manual(&quot;Method&quot;,values = lines)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="MetaCorrect_files/figure-html/BellePEESE-1.png" alt="FAT-PET-PEESE estimation for the Belle dataset" width="20%" />
+<p class="caption">
+FAT-PET-PEESE estimation for the Belle dataset
+</p>
+</div>
+<p>Figure @ref(fig:BellePEESE) shows the result of the FAT-PET-PEESE analysis applied to the Belle dataset. This data set is characterized by severe publication bias, since the estimated meta-analytical effect is of 0.43 while the effect estimated after the pre-registered replications is of -0.04.</p>
+<p>How does FAT-PET-PEESE perform? Let’s focus on the WLS results. The FAT test detects funnel asymmetry: we see that the slope of the FATPETWLS curve is downward sloping, indicating that less precise results have larger effect sizes. The slope of the FAT-PET curve is equal to 2.47 <span class="math inline">\(\pm\)</span> 2.66 The p-value of the one-sided test that this value is zero against the alternative assumption that it is positive is equal to 0.03 when using the normal approximation to the distribution of the parameter. So we reject the absence of publication bias.</p>
+<p>Now, what is the FAT-PET-PEESE estimate corrected for publication bias? It depends on whether the PET estimate is different from zero or not. If it is not, then the PET estimate is the publication bias corrected estimate. If the PET estimate is different from zero, we look at the PEESE estimate. The PET estimate is of -0.08 <span class="math inline">\(\pm\)</span> 0.54. This obviously is not significantly different from zero, and thus becomes our preferred estimate of the treatment effect. Despite is large imprecision, this estimate is in reality extremely close to the truth of -0.04.</p>
+<p>Let’s send the results to the SQL dataset. I’m going to send the results in the SKY database using as a benchmark the summary table of results in the original Kvarven dataset.</p>
+<pre class="r"><code># send the table with the main initial data
+dbWriteTable(SKY.db,&quot;MetaCorrect&quot;,Aggregate %&gt;% select(id,original,replication,metaanalysis,replication_s,meta_s,ser,sem),row.names=FALSE,overwrite=TRUE)
+# explain name of variable
+dbSendQuery(SKY.db,&quot;
+            ALTER TABLE `SKY`.`MetaCorrect` 
+            CHANGE COLUMN `original` `original` TEXT NULL DEFAULT NULL COMMENT &#39;Name of the original paper.&#39; ,
+            CHANGE COLUMN `replication` `replication` TEXT NULL DEFAULT NULL COMMENT &#39;Name of the replication paper.&#39; ,
+            CHANGE COLUMN `metaanalysis` `metaanalysis` TEXT NULL DEFAULT NULL COMMENT &#39;Name of the meta-analysis paper.&#39; ,
+            CHANGE COLUMN `replication_s` `replication_s` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated in the replication.&#39; ,
+            CHANGE COLUMN `meta_s` `meta_s` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated in the meta-analysis.&#39; ,
+            CHANGE COLUMN `ser` `ser` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect size (Cohen d) estimated in the replication.&#39; ,
+            CHANGE COLUMN `sem` `sem` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect size (Cohen d) estimated in the meta-analysis.&#39; ,
+            COMMENT = &#39;Results of the methods correcting for publication bias.&#39; ;&quot;)
+# create a new column in the SQL table for the results of FATPETPEESE
+dbSendQuery(SKY.db,&quot;
+            ALTER TABLE `SKY`.`MetaCorrect` 
+            ADD COLUMN `fatpetpeese_s` DOUBLE NULL DEFAULT NULL AFTER `meta_s`,
+            ADD COLUMN `sef` DOUBLE NULL DEFAULT NULL AFTER `sem`
+            ;&quot;)
+# comment on the names of the new column
+dbSendQuery(SKY.db,&quot;
+            ALTER TABLE `SKY`.`MetaCorrect` 
+            CHANGE COLUMN `fatpetpeese_s` `fatpetpeese_s` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated with FATPETPEESE&#39;,
+            CHANGE COLUMN `sef` `sef` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect size (Cohen d) estimated with FATPETPEESE&#39;
+            ;&quot;)
+# sending the Belle results to the new SQL table in SKY
+dbSendQuery(SKY.db,paste(&quot;
+            UPDATE `SKY`.`MetaCorrect` 
+            SET 
+              `fatpetpeese_s` = &quot;,coef(Belle.WLS.FAT.PET)[[1]],&quot;,
+              `sef` = &quot;,sqrt(diag(vcov(Belle.WLS.FAT.PET)))[[1]],&quot;
+            WHERE 
+              SUBSTRING_INDEX(metaanalysis,&#39; &#39;,1)=&#39;Belle&#39;
+            ;&quot;,sep=&quot;&quot;))</code></pre>
+<p><strong>It would be great to recover the original individual replication estimates to enrich Figure @ref(fig:BellePEESE).</strong></p>
+</div>
+<div id="p-curving" class="section level3">
+<h3>P-curving</h3>
+<p><a href="https://chabefer.github.io/STCI/sec-meta.html#detection-of-and-correction-for-publication-bias">P-curving</a> uses the distribution of the statistically significant p-values to test for the existence of a real effect and to correct for it. The first step in a p-curving analysis is to generate p-values (in generate for the two-sided t-test of absence of effect) and to derive the distribution of the significant p-values. In the absence of any impact, the significant p-values should be distributed uniformly. In the presence of a real effect, the distribution of the significant p-values should exhibit a peak at lower p-values. In case there are Questionable Research Practices, the distribution of significant p-values exhibits a peak close to 0.05. Let’s see what happens.</p>
+<pre class="r"><code># create the p-values for the two-sided t-test that the effect size is zero
+Belle &lt;- Belle %&gt;%
+          mutate(
+            tstat = d/sed,
+            pvalue= 2*(1-pnorm(tstat)))
+# function that generates the proportion of significant pvalues in two half intervals
+p_value_prop &lt;- function(pvalues){
+    pvaluessig &lt;- pvalues[pvalues&lt;=0.05]
+    p.upper &lt;- ifelse(pvaluessig&gt;0.025,1,0)
+    p.lower &lt;- ifelse(pvaluessig&lt;=0.025,1,0)
+    p.upper.prop &lt;- sum(p.upper)/length(pvaluessig)
+    p.lower.prop &lt;- sum(p.lower)/length(pvaluessig)
+    return(c(p.lower.prop, p.upper.prop))
+}
+
+prop_pval &lt;- p_value_prop(Belle$pvalue)
+
+intervals &lt;- c(&quot;[0,0.025]&quot;,&quot;[0.025,0.05]&quot;)
+
+ggplot(, aes(x = intervals, prop_pval)) +
+  geom_bar(stat=&quot;identity&quot;, fill=&quot;steelblue&quot;) +
+  theme_minimal() +
+  scale_x_discrete() +
+  geom_text(aes(label=round(prop_pval, 2)), vjust=1.6, color=&quot;white&quot;, size=3.5) +
+  labs(x = &quot;Intervals&quot;, y = &quot;Proportion&quot;)</code></pre>
+<div class="figure" style="text-align: center">
+<img src="MetaCorrect_files/figure-html/BellePcurve-1.png" alt="Simple p-curve for the Belle dataset" width="75%" />
+<p class="caption">
+Simple p-curve for the Belle dataset
+</p>
+</div>
+<p>Figure @ref(fig:BellePcurve) shows that, from a p-curve perspective, there does seem to be genuine evidence of an effect in this meta-analysis. Let’s look at the full distribution of the p-values and compare it to a flat p-curve and a p-curve with a true effect.</p>
+<pre class="r"><code>MDE.var &lt;- function(alpha=0.05,kappa=0.33,varE=1){
+  return((qnorm(kappa)+qnorm(1-alpha/2))*sqrt(varE))
+}
+
+ppCurvePower &lt;- function(p1,p2,alpha=0.05,kappa=0.33,varE=1){
+  return((pnorm(MDE.var(alpha=alpha,kappa=kappa)-qnorm(1-p2/2))
+    -pnorm(MDE.var(alpha=alpha,kappa=kappa)-qnorm(1-p1/2)))/kappa)
+}
+
+pCurve.hist &lt;- function(pvalues,power=.33){
+  pvaluessig &lt;- pvalues[pvalues&lt;=0.05]  
+  dens1 &lt;- sum(ifelse(abs(pvaluessig-0.005)&lt;0.005,1,0)/length(pvaluessig))
+  dens2 &lt;- sum(ifelse(abs(pvaluessig-0.015)&lt;0.005,1,0)/length(pvaluessig))
+  dens3 &lt;- sum(ifelse(abs(pvaluessig-0.025)&lt;0.005,1,0)/length(pvaluessig))
+  dens4 &lt;- sum(ifelse(abs(pvaluessig-0.035)&lt;0.005,1,0)/length(pvaluessig))
+  dens5 &lt;- sum(ifelse(abs(pvaluessig-0.045)&lt;0.005,1,0)/length(pvaluessig))
+  dens &lt;- c(dens1,dens2,dens3,dens4,dens5)
+  p.hist.1 &lt;- cbind(c(0.01,0.02,0.03,0.04,0.05),dens)
+  p.hist.1 &lt;- as.data.frame(p.hist.1)
+  colnames(p.hist.1) &lt;- c(&#39;p&#39;,&#39;density&#39;)
+  p.hist.1$Data &lt;- c(&quot;Observed&quot;)
+  p.hist.2 &lt;- cbind(c(0.01,0.02,0.03,0.04,0.05),0.2)
+  p.hist.2 &lt;- as.data.frame(p.hist.2)
+  colnames(p.hist.2) &lt;- c(&#39;p&#39;,&#39;density&#39;)
+  p.hist.2$Data &lt;- c(&quot;Uniform&quot;)
+  dens331 &lt;- ppCurvePower(0,0.01)
+  dens332 &lt;- ppCurvePower(0.01,0.02)
+  dens333 &lt;- ppCurvePower(0.02,0.03)
+  dens334 &lt;- ppCurvePower(0.03,0.04)
+  dens335 &lt;- ppCurvePower(0.04,0.05)
+  dens33 &lt;- c(dens331,dens332,dens333,dens334,dens335)
+  p.hist.3 &lt;- cbind(c(0.01,0.02,0.03,0.04,0.05),dens33)
+  p.hist.3 &lt;- as.data.frame(p.hist.3)
+  colnames(p.hist.3) &lt;- c(&#39;p&#39;,&#39;density&#39;)
+  p.hist.3$Data &lt;- c(&quot;Power33&quot;)
+  p.hist &lt;- rbind(p.hist.1,p.hist.2,p.hist.3)
+  return(p.hist)
+}
+
+p.hist &lt;- pCurve.hist(Belle$pvalue)
+p.hist$Data &lt;- factor(p.hist$Data,levels=c(&quot;Observed&quot;,&quot;Uniform&quot;,&quot;Power33&quot;))
+
+ggplot(data=p.hist, aes(x=p, y=density, color=Data)) +
+geom_point() +
+geom_line() +
+theme_bw()</code></pre>
+<div class="figure" style="text-align: center">
+<img src="MetaCorrect_files/figure-html/BellePcurveFull-1.png" alt="Full p-curve for the Belle dataset" width="75%" />
+<p class="caption">
+Full p-curve for the Belle dataset
+</p>
+</div>
+<p>Figure @ref(fig:BellePcurveFull) suggests confirms that, for the p-curve approach, there is evidence in favor of a genuine true effect, close to the effect that would give 33% power. Let’s see whether a formal test confirms that.</p>
+<pre class="r"><code>pp.test &lt;- function(pvalues,alter=&#39;True&#39;){
+  pvaluessig &lt;- pvalues[pvalues&lt;=0.05]
+  pp &lt;- pvaluessig/0.05
+  if (alter==&#39;QRP&#39;){
+    pp &lt;- 1 - pp
+  }
+  Fpp &lt;- -2*sum(log(pp)) # Chi-square statistic
+  dfChis &lt;- 2*length(pvaluessig)
+  pChisquare.Fpp &lt;- pchisq(Fpp,dfChis,lower.tail=F) # Corresponding p-value
+  qChisquare.5 &lt;- qchisq(0.05,dfChis,lower.tail=F) 
+  return(c(pChisquare.Fpp,Fpp,dfChis,qChisquare.5))
+}
+# Only including p-values in [0,0.05] interval.
+
+ #I checked that I did in fact got rid of them all by contrasting with excel file since sample is small.
+pp.ex.sig.True &lt;- pp.test(Belle$pvalue) # p-value close to 0, Chi statistic of 275.1
+pp.ex.sig.QRP &lt;- pp.test(Belle$pvalue, alter = &#39;QRP&#39;) # p-value of 0.993 and Chi statistic of 12.75</code></pre>
+<p>The p-value for the null hypothesis that there is no effect is of 0.01, 41.95, 22, 33.92 while the p-value for the null that there are QRPs is of 0.93, 13.18, 22, 33.92. Clearly, p-curves seems to detect a true effect here.</p>
+<p>Finally, let’s implement the p-curve correction for publication bias.</p>
+<pre class="r"><code>ppCurveEst &lt;- function(thetac,thetak,sigmak,alpha=0.05){
+  return((pnorm((thetac-thetak)/sigmak)/pnorm(thetac/sigmak-qnorm(1-alpha/2))))
+}
+#KS statistic
+KS.stat.unif &lt;- function(vector){
+  return(ks.test(x=vector,y=punif)$statistic)
+}
+ppCurve.Loss.KS &lt;- function(thetac,thetak,sigmak,alpha=0.05){
+  ppvalues &lt;- ppCurveEst(thetac=thetac,thetak=thetak,sigmak=sigmak,alpha=alpha)
+  return(KS.stat.unif(ppvalues))
+}
+
+#Estimating thetac that minimizes the KS distance by brute grid search first
+# will program the optimize function after
+ppCurveEstES &lt;- function(thetak,sigmak,thetacl,thetach,alpha=0.05,ngrid=100){
+  # keep significant coefficients and standard errors
+  thetaksig &lt;- thetak[2*(1-pnorm(thetak/sigmak))&lt;=0.05]
+  sigmaksig &lt;- sigmak[2*(1-pnorm(thetak/sigmak))&lt;=0.05]
+  # break thetac values in a grid
+  thetac.grid &lt;- seq(from=thetacl,to=thetach,length.out=ngrid)
+  # computes the ppcurve for each point of the grid: outputs a matrix where columns are the ppcurves at each values of thetac
+  ppCurve.grid &lt;- sapply(thetac.grid,ppCurveEst,thetak=thetaksig,sigmak=sigmaksig,alpha=alpha)
+  # compute KS stat for each value of thetac (over columns)
+  KS.grid &lt;- apply(ppCurve.grid,2,KS.stat.unif)
+  # computes the value of thetac for which the KS stat is minimum (match identifies the rank of the min in the KSgrid)
+  min.theta.c &lt;- thetac.grid[match(min(KS.grid),KS.grid)]
+  # optimizes over KS stat to find value of thetac that minimizes the KS stat
+  thetahat &lt;- optimize(ppCurve.Loss.KS,c(min.theta.c-0.1,min.theta.c+0.1),thetak=thetaksig,sigmak=sigmaksig,alpha=alpha)
+  # returns the optimal thetac, the grid of thetac, the KS stats on the grid, for potential plot, and the ecdf of ppvalues at the optimum theta for graph against the uniform
+  return(list(thetahat$minimum,thetac.grid,KS.grid,ecdf(ppCurve.grid[,match(min(KS.grid),KS.grid)])))
+}
+
+test &lt;- ppCurveEstES(thetak=Belle$d,sigmak = Belle$sed ,thetacl=0,thetach=10,alpha=0.05,ngrid=50)</code></pre>
+<p>The p-curve bias-corrected estimate is of 0.27. Lower than the meta-analytic estimate but still pretty far off.</p>
+<p>Let’s send the results to the SQL dataset.</p>
+<pre class="r"><code># create a new column in the SQL table for the results of Pcurve
+dbSendQuery(SKY.db,&quot;
+            ALTER TABLE `SKY`.`MetaCorrect` 
+            ADD COLUMN `pcurve_s` DOUBLE NULL DEFAULT NULL AFTER `fatpetpeese_s`
+            ;&quot;)
+# comment on the names of the new column
+dbSendQuery(SKY.db,&quot;
+            ALTER TABLE `SKY`.`MetaCorrect` 
+            CHANGE COLUMN `pcurve_s` `pcurve_s` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated with Pcurve&#39;
+            ;&quot;)
+# sending the Belle results to the new SQL table in SKY
+dbSendQuery(SKY.db,paste(&quot;
+            UPDATE `SKY`.`MetaCorrect` 
+            SET 
+              `pcurve_s` = &quot;,test[[1]],&quot;
+            WHERE 
+              SUBSTRING_INDEX(metaanalysis,&#39; &#39;,1)=&#39;Belle&#39;
+            ;&quot;,sep=&quot;&quot;))</code></pre>
+</div>
+</div>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>The data comes from the <a href="https://osf.io/8qvgp/">OSF webpage of the Kvarven et al paper</a>. In this section, I download the original data and send it to SKY’s SQL server. In order to so, I’ve had to <a href="https://osf.io/vsnu5/">fork the original project</a>, because the <code>osfr</code> package would not connect me to the original project. This is not optimal since I will miss future potential updates of the project.</p>
+<pre class="r"><code># Authentication on OSF (provide your own OSF authentication key here)
+#osf_auth(OSFauth)
+# path of forked project on OSF
+#OSFid &lt;- &quot;vsnu5&quot;
+# finding the project on OSF
+#kvarven.project &lt;- osf_retrieve_node(paste(&quot;https://osf.io&quot;,OSFid,sep=&quot;/&quot;))
+# dowloading data in working directory
+#osf_download(osf_ls_files(kvarven.project)[1,])
+# extracting data
+#unzip(osf_ls_files(kvarven.project)[[1,1]])
+# this returns an error message since the name of one of the files to unzip contains a character in central European DOS Latin 2 encoding (&quot;ü&quot;)
+# I&#39;ve had to extract manually the files and then to change the name of the file to &quot;u&quot; so that no similar problem happens.</code></pre>
+<pre class="r"><code># summary file with main results of meta-analysis and replications
+# path to access the file
+path &lt;- &quot;./Corrected data May 2020/&quot;
+# uploading the file
+data.tot &lt;- read_excel(paste(path,&quot;Dataset.xls&quot;,sep=&quot;&quot;))
+# correcting one character that messes up in SQL
+data.tot$metaanalysis[[2]] &lt;- &quot;Kuhberger (1998)&quot;
+# taking out unnecessary lines and columns
+data.tot &lt;- as.data.frame(data.tot[1:15,1:21])
+# sending to SQL
+dbWriteTable(Kvarven.db,&quot;Aggregate&quot;,data.tot,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,&quot;
+            ALTER TABLE `Kvarven`.`Aggregate` 
+            CHANGE COLUMN `row_names` `id` SMALLINT(2) NULL DEFAULT NULL COMMENT &#39;Id of the study&#39; ,
+            CHANGE COLUMN `original` `original` TEXT NULL DEFAULT NULL COMMENT &#39;Name of the original paper.&#39; ,
+            CHANGE COLUMN `replication` `replication` TEXT NULL DEFAULT NULL COMMENT &#39;Name of the replication paper.&#39; ,
+            CHANGE COLUMN `metaanalysis` `metaanalysis` TEXT NULL DEFAULT NULL COMMENT &#39;Name of the meta-analysis paper.&#39; ,
+            CHANGE COLUMN `effecto` `effecto` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect estimated in the original meta-analysis (in original units). (I guess)&#39; ,
+            CHANGE COLUMN `originalinc` `originalinc` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;Is the original study included in the meta-analysis? (1= yes, 0= No)&#39; ,
+            CHANGE COLUMN `replication_inc` `replication_inc` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;Is the replication included in the meta-analysis? (1= yes, 0= No)&#39; ,
+            CHANGE COLUMN `noconvert` `noconvert` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;I do not know what this means.&#39; ,
+            CHANGE COLUMN `publi` `publi` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;Has the replication been published? (1= yes, 0= no) (I guess)&#39; ,
+            CHANGE COLUMN `tausqrm` `tausqrm` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;Inter-study variability in the original meta-analysis (I guess).&#39; ,
+            CHANGE COLUMN `originalu` `originalu` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;I do not know what this means.&#39; ,
+            CHANGE COLUMN `replication_s` `replication_s` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated in the replication.&#39; ,
+            CHANGE COLUMN `meta_s` `meta_s` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated in the meta-analysis.&#39; ,
+            CHANGE COLUMN `ser` `ser` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect size (Cohen d) estimated in the replication.&#39; ,
+            CHANGE COLUMN `sem` `sem` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect size (Cohen d) estimated in the meta-analysis.&#39; ,
+            CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the difference in estimated effect size (Cohen d) between the meta-analysis and the replication.&#39; ,
+            CHANGE COLUMN `weight` `weight` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;I do not know what that means.&#39; ,
+            CHANGE COLUMN `ml` `ml` TINYINT(1) NULL DEFAULT NULL COMMENT &#39;I do not know what that means.&#39; ,
+            CHANGE COLUMN `threepsm` `threepsm` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) estimated using the selection model method.&#39; ,
+            CHANGE COLUMN `threepsmse` `threepsmse` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect size (Cohen d) estimated using the selection model method.&#39; ,
+            CHANGE COLUMN `diff` `diff` DOUBLE NULL DEFAULT NULL COMMENT &#39;Difference in estimated effect size (Cohen d) between the meta-analysis and the replication. (I guess)&#39; ,
+            CHANGE COLUMN `seo` `seo` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the effect estimated in the original meta-analysis (in original units). (I guess)&#39; , 
+            COMMENT = &#39;Table with the aggregate data of the Kvarven paper.&#39; ;&quot;)
+
+# Files for individual studies
+# path to files
+path &lt;- &quot;./Corrected data May 2020/Meta/&quot;
+# names of the datasets
+files &lt;- c(&quot;Belle&quot;,&quot;Blanken&quot;,&quot;Coles&quot;,&quot;DeCoster&quot;,&quot;Felts&quot;,&quot;Hagger&quot;,&quot;Henriksson&quot;,&quot;Kivikangas&quot;,&quot;Kuhberger&quot;,&quot;Meissner&quot;,&quot;Miles&quot;,&quot;Rabelo&quot;,&quot;Rand&quot;,&quot;Roth&quot;,&quot;Schimmack&quot;)
+# separators used in the data files
+sep.data &lt;- c(&quot;,&quot;,rep(&quot;;&quot;,8),&quot;,&quot;,rep(&quot;;&quot;,5))
+
+# Belle dataset
+Belle &lt;- read.csv(paste(path,files[1],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[1])
+dbWriteTable(Kvarven.db,files[1],Belle %&gt;% select(&quot;d&quot;,&quot;v&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Belle` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of self-concept maintenance originally studied by Mazar et al. (2008)&#39; ;&quot;)
+
+# Blanken dataset
+Blanken &lt;- read.csv(paste(path,files[2],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[2])
+dbWriteTable(Kvarven.db,files[2],Blanken %&gt;% select(&quot;d&quot;,&quot;var&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Blanken` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `var` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of moral credentials and the expression of prejudice originally studied by Monin &amp; Miller (2001)&#39; ;&quot;)
+
+# Coles dataset
+Coles &lt;- read.csv(paste(path,files[3],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[3])
+dbWriteTable(Kvarven.db,files[3],Coles,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Coles` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `es` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `se` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of the facial feedback hypothesis originally studied by Strack et al. (1988)&#39; ;&quot;)
+
+# DeCoster dataset
+DeCoster &lt;- read.csv(paste(path,files[4],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[4])
+dbWriteTable(Kvarven.db,files[4],DeCoster %&gt;% select(&quot;d&quot;,&quot;v&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`DeCoster` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of the category accessibility hypothesis originally studied by Srull et al. (1979)&#39; ;&quot;)
+
+# Felts dataset
+Felts &lt;- read.csv(paste(path,files[5],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[5])
+dbWriteTable(Kvarven.db,files[5],Felts %&gt;% select(&quot;d&quot;,&quot;v&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Felts` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of the dissociation between moral judgments and justifications originally studied by Hauser et al. (2007)&#39; ;&quot;)
+
+# Hagger dataset
+Hagger &lt;- read.csv(paste(path,files[6],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[6])
+dbWriteTable(Kvarven.db,files[6],Hagger %&gt;% select(&quot;d&quot;,&quot;v&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Hagger` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of Methylphenidate and effort-induced depletion of regulatory control originally studied by Sripada et al. (2014)&#39; ;&quot;)
+
+# Henriksson dataset
+Henriksson &lt;- read.csv(paste(path,files[7],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[7])
+dbWriteTable(Kvarven.db,files[7],Henriksson,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Henriksson` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of incidental environmental anchors originally studied by Critcher &amp; Gilovich (2008)&#39; ;&quot;)
+
+
+# Kivikangas dataset
+Kivikangas &lt;- read.csv(paste(path,files[8],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[8])
+dbWriteTable(Kvarven.db,files[8],Kivikangas,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Kivikangas` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `SE` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of the moral foundations of liberals and conservatives originally studied by Graham et al. (2009)&#39; ;&quot;)
+
+# Kuhberger dataset
+Kuhberger &lt;- read.csv(paste(path,files[9],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[9])
+dbWriteTable(Kvarven.db,files[9],Kuhberger,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Kuhberger` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of the framing of decisions originally studied by Tversky &amp; Kahneman (1981)&#39; ;&quot;)
+
+# Meissner dataset
+Meissner &lt;- read.csv(paste(path,files[10],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[10])
+dbWriteTable(Kvarven.db,files[10],Meissner %&gt;% select(&quot;d&quot;,&quot;v&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Meissner` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of the verbal overshadowing of visual memories originally studied by Schooler &amp; Engstler-Schooler (1990)&#39; ;&quot;)
+
+# Miles dataset
+Miles &lt;- read.csv(paste(path,files[11],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[11])
+dbWriteTable(Kvarven.db,files[11],Miles %&gt;% select(&quot;d&quot;,&quot;v&quot;,&quot;sed&quot;),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Miles` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of elaboration and the imagined contact effect originally studied by Husnu &amp; Crisp (2010)&#39; ;&quot;)
+
+# Rabelo dataset
+Rabelo &lt;- read.csv(paste(path,files[12],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[12])
+dbWriteTable(Kvarven.db,files[12],Rabelo,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Rabelo` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of weight as an embodiment of importance originally studied by Jostmann et al. (2009)&#39; ;&quot;)
+
+# Rand dataset
+Rand &lt;- read.csv(paste(path,files[13],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[13])
+dbWriteTable(Kvarven.db,files[13],Rand,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Rand` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of spontaneous giving and calculated greed originally studied by Rand et al. (2012)&#39; ;&quot;)
+
+# Roth dataset
+Roth &lt;- read.csv(paste(path,files[14],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[14])
+dbWriteTable(Kvarven.db,files[14],Roth,overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Roth` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `d` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `v` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `sed` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of instructional manipulation checks and satisficing originally studied by Oppenheimer et al. (2009)&#39; ;&quot;)
+
+# Schimmack dataset
+Schimmack &lt;- read.csv(paste(path,files[15],&quot;.csv&quot;,sep=&quot;&quot;),sep=sep.data[15])
+dbWriteTable(Kvarven.db,files[15],Schimmack %&gt;% select(q,Var.q.,SE.q.),overwrite=TRUE,row.names=TRUE)
+dbSendQuery(Kvarven.db,
+            &quot;ALTER TABLE `Kvarven`.`Schimmack` 
+             CHANGE COLUMN `row_names` `id` SMALLINT(4) NULL DEFAULT NULL COMMENT &#39;Id of the result&#39; ,
+             CHANGE COLUMN `q` `d` DOUBLE NULL DEFAULT NULL COMMENT &#39;Effect size (Cohen d) in units of standard deviation.&#39; ,
+             CHANGE COLUMN `Var.q.` `v` DOUBLE NULL DEFAULT NULL COMMENT &#39;Variance of the estimated effect size.&#39; ,
+             CHANGE COLUMN `SE.q.` `sed` DOUBLE NULL DEFAULT NULL COMMENT &#39;Standard error of the estimated effect size.&#39; , 
+             COMMENT = &#39;Dataset for the meta-analysis of assimilation and contrast effects originally studied by Schwarz et al. (1991)&#39; ;&quot;)</code></pre>
 </div>
 
 
