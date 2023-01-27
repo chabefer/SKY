@@ -13,7 +13,7 @@ This section is organized along the lines of the various methods social scientis
     + Regression Discontiuity Designs
     + Instrumental Variables
     + Kink Designs and Notches
-* [Observational Methods](BiasOM.html)
+* [Observational Methods](BiOM.html)
 * Lab Experiments
 * Structural Models
 * Qualitative Methods

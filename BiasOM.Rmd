@@ -1,3 +1,5 @@
 ---
 title: "Biases of Observational Methods"
 ---
+
+* [Size of the bias of observational methods](https://chabefer.github.io/SKAI_Bias_Observational_Methods/)
