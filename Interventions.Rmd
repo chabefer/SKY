@@ -8,6 +8,7 @@ SKY hosts for the moment preliminary answers to several questions relative to th
     + [What are the Most Cost-Effective Ways to Fight Climate Change?](CC.html)
     + [What are the Economic Consequences of Climate Change?](ECCC.html)
     + [Are Nudges a Cost-Effective Way to Change Environmental Behavior?](nudges.html)
+    + [Are Nudges a Cost-Effective Way to Promote Enrollment into Payments for Environmental Services?](https://chabefer.github.io/SKAI_Nudges_PES/)
 * Education
     + [Are Job Training Programs Effective?](JTP.html)
     + [Are Socio-Emotional Learning Programs Effective?](SEL.html)

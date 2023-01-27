@@ -1,0 +1,8 @@
+---
+title: "Observational Methods: Frontier Research"
+---
+
+Observational methods are a key tool for estimating causal impacts in the absence of randomized or natural experiment.
+This page of SKAI aggregates recent methodological research on observational methods.
+
+* [Size of the bias of observational methods](https://chabefer.github.io/SKAI_Bias_Observational_Methods/)
